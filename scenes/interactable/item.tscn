@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://smt7dfullky1"]
+
+[ext_resource type="Script" path="res://scenes/interactable/item.gd" id="1_pavnt"]
+[ext_resource type="Texture2D" uid="uid://d4era6v033c23" path="res://assets/icons/Chicken_of_the_Wood.png" id="2_uew80"]
+[ext_resource type="AudioStream" uid="uid://c7b6fittdynwh" path="res://assets/sfx/051_use_item_01.wav" id="3_b381m"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ex52p"]
+radius = 44.0114
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fy2gn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t86jq"]
+radius = 7.0
+
+[node name="Item" type="CharacterBody2D"]
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("1_pavnt")
+
+[node name="MagnetArea" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MagnetArea"]
+shape = SubResource("CircleShape2D_ex52p")
+debug_color = Color(0.509804, 0.576471, 0.180392, 0.419608)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_uew80")
+
+[node name="PickupArea" type="Area2D" parent="."]
+position = Vector2(7, 9)
+collision_layer = 32
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea"]
+position = Vector2(-7, -9)
+shape = SubResource("CircleShape2D_fy2gn")
+debug_color = Color(0.701961, 0, 0.235294, 0.419608)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_t86jq")
+
+[node name="SFX_PickupHeart" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_b381m")
+
+[node name="SFX_PickupCoin" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_b381m")
+
+[connection signal="area_entered" from="MagnetArea" to="." method="_on_magnet_area_entered"]
+[connection signal="area_exited" from="MagnetArea" to="." method="_on_magnet_area_exited"]
+[connection signal="area_entered" from="PickupArea" to="." method="_on_pickup_area_entered"]

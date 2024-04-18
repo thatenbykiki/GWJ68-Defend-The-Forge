@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=3 uid="uid://dru03h78nk0v5"]
+
+[ext_resource type="Script" path="res://scenes/mob_spawner.gd" id="1_1deyu"]
+
+[node name="MobSpawner" type="Node2D"]
+script = ExtResource("1_1deyu")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="East" type="Marker2D" parent="."]
+position = Vector2(866, 408)
+
+[node name="East2" type="Marker2D" parent="."]
+position = Vector2(866, 392)
+
+[node name="East3" type="Marker2D" parent="."]
+position = Vector2(866, 424)
+
+[node name="South" type="Marker2D" parent="."]
+position = Vector2(408, 864)
+
+[node name="South2" type="Marker2D" parent="."]
+position = Vector2(392, 864)
+
+[node name="South3" type="Marker2D" parent="."]
+position = Vector2(424, 864)
+
+[node name="West" type="Marker2D" parent="."]
+position = Vector2(-50, 408)
+
+[node name="West2" type="Marker2D" parent="."]
+position = Vector2(-50, 392)
+
+[node name="West3" type="Marker2D" parent="."]
+position = Vector2(-50, 424)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
