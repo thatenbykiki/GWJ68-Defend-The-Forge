@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://2gmcld65iwha"
+path="res://.godot/imported/DavidKBD - Reckless Punk-Metal Pack - 12 - You Loss.ogg-7e2f53b04ab37799b50dc9736484c290.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/bgm/DavidKBD - Reckless Punk-Metal Pack - 12 - You Loss.ogg"
+dest_files=["res://.godot/imported/DavidKBD - Reckless Punk-Metal Pack - 12 - You Loss.ogg-7e2f53b04ab37799b50dc9736484c290.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

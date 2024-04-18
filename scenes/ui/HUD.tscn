@@ -1,0 +1,67 @@
+[gd_scene load_steps=6 format=3 uid="uid://dox3bykvmy3xv"]
+
+[ext_resource type="Texture2D" uid="uid://d4era6v033c23" path="res://assets/icons/Chicken_of_the_Wood.png" id="1_gwajb"]
+[ext_resource type="LabelSettings" uid="uid://c5y5na1u3i3et" path="res://scenes/ui_font.tres" id="3_jtkf0"]
+[ext_resource type="Texture2D" uid="uid://dd3rakq66v1i5" path="res://assets/ui/frames_brown_basic.png" id="3_vcvn8"]
+[ext_resource type="Texture2D" uid="uid://dwmyyk77qyur1" path="res://assets/ui/heart.png" id="4_dc235"]
+[ext_resource type="Texture2D" uid="uid://b35wvbp6r3tw3" path="res://assets/icons/16x16 Icons (19).png" id="5_1yjqo"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+scale = Vector2(4, 4)
+transform = Transform2D(4, 0, 0, 4, 0, 0)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -107.0
+offset_top = 188.25
+offset_right = 311.0
+offset_bottom = 237.25
+texture = ExtResource("3_vcvn8")
+expand_mode = 3
+
+[node name="MushCoin" type="Sprite2D" parent="."]
+position = Vector2(8.25, 208.25)
+texture = ExtResource("1_gwajb")
+
+[node name="CoinCount" type="Label" parent="."]
+offset_left = 20.25
+offset_top = 200.25
+offset_right = 60.25
+offset_bottom = 223.25
+size_flags_vertical = 8
+text = "0"
+label_settings = ExtResource("3_jtkf0")
+metadata/_edit_use_anchors_ = true
+
+[node name="HeartContainer" type="Node2D" parent="."]
+position = Vector2(82, 207.75)
+
+[node name="Heart0" type="Sprite2D" parent="HeartContainer"]
+texture = ExtResource("4_dc235")
+hframes = 3
+
+[node name="Heart1" type="Sprite2D" parent="HeartContainer"]
+position = Vector2(8, 0)
+texture = ExtResource("4_dc235")
+hframes = 3
+
+[node name="Heart2" type="Sprite2D" parent="HeartContainer"]
+position = Vector2(16, 0)
+texture = ExtResource("4_dc235")
+hframes = 3
+
+[node name="Heart3" type="Sprite2D" parent="HeartContainer"]
+position = Vector2(23.75, 0)
+texture = ExtResource("4_dc235")
+hframes = 3
+
+[node name="WaveCounter" type="Label" parent="."]
+offset_left = 150.0
+offset_top = 199.75
+offset_right = 190.0
+offset_bottom = 222.75
+text = "WAVE 0"
+label_settings = ExtResource("3_jtkf0")
+
+[node name="RelicSprite" type="Sprite2D" parent="."]
+position = Vector2(51.25, 208)
+texture = ExtResource("5_1yjqo")

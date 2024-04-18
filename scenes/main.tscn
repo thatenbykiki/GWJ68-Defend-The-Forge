@@ -1,0 +1,58 @@
+[gd_scene load_steps=11 format=3 uid="uid://cd1vxb7dhpnq6"]
+
+[ext_resource type="Script" path="res://scenes/main.gd" id="1_dgmo2"]
+[ext_resource type="PackedScene" uid="uid://cy8n73o2n832k" path="res://scenes/world/world.tscn" id="1_x1tin"]
+[ext_resource type="PackedScene" uid="uid://cul7x7y4dgjvk" path="res://scenes/player/player.tscn" id="2_t0hxg"]
+[ext_resource type="PackedScene" uid="uid://dru03h78nk0v5" path="res://scenes/mob_spawner.tscn" id="3_p0knj"]
+[ext_resource type="PackedScene" uid="uid://dox3bykvmy3xv" path="res://scenes/ui/HUD.tscn" id="5_2wbjj"]
+[ext_resource type="PackedScene" uid="uid://wfnjqg6kj4q7" path="res://scenes/ui/game_over.tscn" id="6_g3oao"]
+[ext_resource type="AudioStream" uid="uid://c6b3jwbscp21k" path="res://assets/bgm/DavidKBD - Reckless Punk-Metal Pack - 04 - Get Ready.ogg" id="6_ia4l7"]
+[ext_resource type="PackedScene" uid="uid://ydn0xlqygnx6" path="res://scenes/ui/upgrade_options.tscn" id="8_m4bh5"]
+[ext_resource type="PackedScene" uid="uid://d0nxl2lveo2re" path="res://scenes/ui/relic_select.tscn" id="9_l14st"]
+[ext_resource type="AudioStream" uid="uid://bqvc8biks76gq" path="res://assets/sfx/013_Confirm_03.wav" id="10_ieeyp"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_dgmo2")
+
+[node name="World" parent="." instance=ExtResource("1_x1tin")]
+position = Vector2(408, 408)
+scale = Vector2(3, 3)
+
+[node name="MobSpawner" parent="." instance=ExtResource("3_p0knj")]
+
+[node name="Player" parent="." instance=ExtResource("2_t0hxg")]
+position = Vector2(224, 289)
+scale = Vector2(3, 3)
+
+[node name="WaveOverTimer" type="Timer" parent="."]
+process_mode = 2
+one_shot = true
+
+[node name="GameResetTimer" type="Timer" parent="."]
+process_mode = 2
+one_shot = true
+
+[node name="HUD" parent="." instance=ExtResource("5_2wbjj")]
+
+[node name="GameOver" parent="." instance=ExtResource("6_g3oao")]
+process_mode = 2
+visible = false
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_ia4l7")
+volume_db = -25.0
+
+[node name="UpgradeOptions" parent="." instance=ExtResource("8_m4bh5")]
+process_mode = 2
+visible = false
+
+[node name="RelicSelect" parent="." instance=ExtResource("9_l14st")]
+process_mode = 2
+
+[node name="SFX_Confirm" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_ieeyp")
+
+[connection signal="hit_p" from="MobSpawner" to="." method="_on_mob_spawner_hit_p"]
+[connection signal="hit_p" from="MobSpawner" to="Player" method="_on_mob_spawner_hit_p"]
+[connection signal="timeout" from="WaveOverTimer" to="." method="_on_wave_over_timer_timeout"]
+[connection signal="timeout" from="GameResetTimer" to="." method="_on_game_reset_timer_timeout"]

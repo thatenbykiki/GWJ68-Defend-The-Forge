@@ -1,0 +1,9 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://c5y5na1u3i3et"]
+
+[ext_resource type="FontFile" uid="uid://bxe3w4luhe7go" path="res://assets/ui/monogram-extended.ttf" id="1_erfml"]
+
+[resource]
+resource_local_to_scene = true
+font = ExtResource("1_erfml")
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)

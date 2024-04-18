@@ -1,0 +1,110 @@
+[gd_scene load_steps=8 format=3 uid="uid://wfnjqg6kj4q7"]
+
+[ext_resource type="LabelSettings" uid="uid://dgudwg7rjw1aj" path="res://scenes/game_over_fonty.tres" id="1_6rhix"]
+[ext_resource type="Script" path="res://scenes/ui/game_over.gd" id="1_bowfv"]
+[ext_resource type="FontFile" uid="uid://bxe3w4luhe7go" path="res://assets/ui/monogram-extended.ttf" id="2_kvtcx"]
+[ext_resource type="StyleBox" uid="uid://c2acqgbbgdxop" path="res://scenes/game_over_stylebox.tres" id="3_exi4c"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6bvrk"]
+bg_color = Color(0.105882, 0.105882, 0.105882, 0.654902)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.556863, 0.145098, 0.113725, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mrlll"]
+bg_color = Color(0.164706, 0.164706, 0.164706, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.776471, 0.270588, 0.141176, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oqiy5"]
+bg_color = Color(0.309804, 0.309804, 0.309804, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.929412, 0.670588, 0.313726, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="GameOver" type="CanvasLayer"]
+script = ExtResource("1_bowfv")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -100.0
+offset_right = 200.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6bvrk")
+
+[node name="GameOver" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -108.0
+offset_top = -76.0
+offset_right = 108.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 120
+text = "GAME OVER"
+label_settings = ExtResource("1_6rhix")
+
+[node name="WavesLabel" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -96.0
+offset_top = -13.0
+offset_right = 96.0
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_kvtcx")
+theme_override_font_sizes/font_size = 32
+text = "WAVES SURVIVED: 20"
+
+[node name="Button" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.0
+offset_top = 34.0
+offset_right = 46.0
+offset_bottom = 65.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_kvtcx")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = ExtResource("3_exi4c")
+theme_override_styles/hover = SubResource("StyleBoxFlat_mrlll")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_oqiy5")
+text = " TRY AGAIN "

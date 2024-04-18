@@ -1,0 +1,124 @@
+{
+	"categories": [
+		{
+			"uuid": "a15610a5-ce84-436d-9433-2f52b5c09443",
+			"title": "Task",
+			"color": "70bafa"
+		}
+	],
+	"stages": [
+		{
+			"uuid": "3a33ad4f-54cc-4267-a448-ee1ddd1043ac",
+			"title": "Todo",
+			"tasks": [
+				"2d9d6579-1522-4804-b1c7-0d8d34618faa",
+				"ff73d48d-0db0-4519-9699-c0bdaa907d93"
+			]
+		},
+		{
+			"uuid": "1034fdc5-7e37-44a0-88d9-1218616fa7a0",
+			"title": "Doing",
+			"tasks": [
+				"713dbe4b-ebe8-4874-8ac4-9dfd9f4b3bd9",
+				"f61f7523-8a39-45e7-be4f-371f77a457ba",
+				"e0dc153e-a35b-4abd-a36b-756b38d9717f"
+			]
+		},
+		{
+			"uuid": "10be5e17-dffc-45e3-9565-b479206f3338",
+			"title": "Done",
+			"tasks": [
+				"637b36e6-c4ae-4758-b4cb-4623e442a154",
+				"7314f4b2-cf20-4981-87f7-c204b3aac8b2",
+				"5fd56990-83f9-4d67-a79f-05fe970d2c31",
+				"4904a162-38f8-40e9-87af-9b24e7f8cada",
+				"95e56586-c162-4510-8819-d7af3364eb53"
+			]
+		}
+	],
+	"tasks": [
+		{
+			"uuid": "95e56586-c162-4510-8819-d7af3364eb53",
+			"title": "TODO: Upgrade system after each wave",
+			"description": "",
+			"category": "a15610a5-ce84-436d-9433-2f52b5c09443",
+			"steps": []
+		},
+		{
+			"uuid": "5fd56990-83f9-4d67-a79f-05fe970d2c31",
+			"title": "TODO : Relic to choose at beginning of run",
+			"description": "Double check the variable settings, seems like the SPEED upgrade isn't setting health properly.",
+			"category": "a15610a5-ce84-436d-9433-2f52b5c09443",
+			"steps": []
+		},
+		{
+			"uuid": "ff73d48d-0db0-4519-9699-c0bdaa907d93",
+			"title": "JUICE : Varied level design",
+			"description": "",
+			"category": "a15610a5-ce84-436d-9433-2f52b5c09443",
+			"steps": []
+		},
+		{
+			"uuid": "2d9d6579-1522-4804-b1c7-0d8d34618faa",
+			"title": "TODO : Intro and Outro",
+			"description": "",
+			"category": "a15610a5-ce84-436d-9433-2f52b5c09443",
+			"steps": []
+		},
+		{
+			"uuid": "713dbe4b-ebe8-4874-8ac4-9dfd9f4b3bd9",
+			"title": "TODO : SFX for Powerups",
+			"description": "",
+			"category": "a15610a5-ce84-436d-9433-2f52b5c09443",
+			"steps": []
+		},
+		{
+			"uuid": "f61f7523-8a39-45e7-be4f-371f77a457ba",
+			"title": "TODO : Visual for Powerups",
+			"description": "",
+			"category": "a15610a5-ce84-436d-9433-2f52b5c09443",
+			"steps": []
+		},
+		{
+			"uuid": "637b36e6-c4ae-4758-b4cb-4623e442a154",
+			"title": "!!! PLAYER NEEDS TO DIE",
+			"description": "",
+			"category": "a15610a5-ce84-436d-9433-2f52b5c09443",
+			"steps": []
+		},
+		{
+			"uuid": "4904a162-38f8-40e9-87af-9b24e7f8cada",
+			"title": "FIX : DONT START WAVE TIMER UNTIL UPGRADE PICKED",
+			"description": "",
+			"category": "a15610a5-ce84-436d-9433-2f52b5c09443",
+			"steps": []
+		},
+		{
+			"uuid": "7314f4b2-cf20-4981-87f7-c204b3aac8b2",
+			"title": "FIX : Game Over sequence not right",
+			"description": "Nigel here! You set new variables when implementing the wave system and they need to be included in the functoins that handle your new game and game reset. ",
+			"category": "a15610a5-ce84-436d-9433-2f52b5c09443",
+			"steps": []
+		},
+		{
+			"uuid": "e0dc153e-a35b-4abd-a36b-756b38d9717f",
+			"title": "FIX : Controller : Upgrade screen disappears without selection",
+			"description": "",
+			"category": "a15610a5-ce84-436d-9433-2f52b5c09443",
+			"steps": []
+		}
+	],
+	"layout": {
+		"columns": [
+			[
+				"3a33ad4f-54cc-4267-a448-ee1ddd1043ac"
+			],
+			[
+				"1034fdc5-7e37-44a0-88d9-1218616fa7a0"
+			],
+			[
+				"10be5e17-dffc-45e3-9565-b479206f3338"
+			]
+		]
+	}
+}

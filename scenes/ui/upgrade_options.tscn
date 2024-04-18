@@ -1,0 +1,88 @@
+[gd_scene load_steps=7 format=3 uid="uid://ydn0xlqygnx6"]
+
+[ext_resource type="FontFile" uid="uid://bxe3w4luhe7go" path="res://assets/ui/monogram-extended.ttf" id="1_54ts4"]
+[ext_resource type="Script" path="res://scenes/ui/upgrade_options.gd" id="1_i0h10"]
+[ext_resource type="Texture2D" uid="uid://c7cnfgku2ckk1" path="res://assets/icons/16x16 Icons (12).png" id="2_jgy1h"]
+[ext_resource type="StyleBox" uid="uid://c2acqgbbgdxop" path="res://scenes/game_over_stylebox.tres" id="3_e8uxe"]
+[ext_resource type="Texture2D" uid="uid://dm70a3bag0i0u" path="res://assets/icons/16x16 Icons (17).png" id="3_jh5hc"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_8hhr1"]
+font = ExtResource("1_54ts4")
+font_size = 64
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[node name="UpgradeOptions" type="CanvasLayer"]
+script = ExtResource("1_i0h10")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -100.0
+offset_right = 200.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="UpgradeLabel" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -144.0
+offset_top = -66.0
+offset_right = 144.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "CHOOSE WISELY"
+label_settings = SubResource("LabelSettings_8hhr1")
+
+[node name="DamageUp" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -130.0
+offset_top = 22.0
+offset_right = -30.0
+offset_bottom = 49.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_right = NodePath("../SpeedUp")
+theme_override_fonts/font = ExtResource("1_54ts4")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = ExtResource("3_e8uxe")
+text = "DAMAGE +"
+icon = ExtResource("2_jgy1h")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="SpeedUp" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 28.0
+offset_top = 5.5
+offset_right = 132.0
+offset_bottom = 65.5
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_left = NodePath("../DamageUp")
+theme_override_fonts/font = ExtResource("1_54ts4")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = ExtResource("3_e8uxe")
+text = "SPEED +"
+icon = ExtResource("3_jh5hc")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
