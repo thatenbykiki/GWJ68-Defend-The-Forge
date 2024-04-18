@@ -17,7 +17,7 @@ A mysterious entity offers you a choice of centuries old relics to help you in y
 ~~Trade in your mushrooms at the mischievous god's trading post for ancient relics. They offer effects that are usually interesting, if not fatal!~~
 ## Mechanics
 
-3 Health
+~~3~~ 4 Health
 
 Basic & Heavy attacks
 
