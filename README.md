@@ -23,10 +23,10 @@ Basic & Heavy attacks
 Can't move while blocking but take reduced damage.
 # Credits
 #### Art
-[Atelier Pixerelia](https://pixerelia.itch.io) 
-[SnowHex 🧊](https://snowhex.itch.io)
-[0x72](https://itch.io/profile/0x72)
-[Kenney](https://www.kenney.nl/)
+[Atelier Pixerelia](https://pixerelia.itch.io) | 
+[SnowHex 🧊](https://snowhex.itch.io) | 
+[0x72](https://itch.io/profile/0x72) | 
+[Kenney](https://www.kenney.nl/) | 
 #### SFX
 [Leohpaz](https://leohpaz.itch.io)
 #### Font
