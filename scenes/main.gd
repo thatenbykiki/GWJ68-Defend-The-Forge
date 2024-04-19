@@ -27,16 +27,20 @@ var wave : int
 var chosen_relic : int # 0: Obelisk, 1: Zweihander, 2: Lava Boots
 var relic_selected := false
 
+var chosen_upgrade : int # 0: Damage, 1: Speed, 3: INVALID
+
 func _ready():
 	$GameOver/Button.pressed.connect(new_game)
-	$UpgradeOptions/DamageUp.pressed.connect(damage_upgrade)
-	$UpgradeOptions/SpeedUp.pressed.connect(speed_upgrade)
+	$UpgradeOptions/Panel/DamageUp.pressed.connect(damage_upgrade)
+	$UpgradeOptions/Panel/SpeedUp.pressed.connect(speed_upgrade)
+	$UpgradeOptions/Panel/NextWave.pressed.connect(next_wave_start)
 	$RelicSelect/Boots.pressed.connect(boots_relic)
 	$RelicSelect/Zweihander.pressed.connect(sword_relic)
 	$RelicSelect/Obelisk.pressed.connect(shield_relic)
 	$PauseScreen/Panel/BGMToggle.toggled.connect(toggle_bgm)
 	$PauseScreen/Panel/Resume.pressed.connect(resume_game)
 	$Controls/Panel/Button.pressed.connect(game_start)
+	
 	$BGM.playing = true
 	player.reset()	
 	show_start_menu()
@@ -50,12 +54,16 @@ func _process(_delta):
 		max_mobs += 2
 		mobMgr.mobs_spawned = 0
 		$UpgradeOptions.show()
-		$UpgradeOptions/DamageUp.grab_focus()
+		$UpgradeOptions/Panel/DamageUp.grab_focus()
 		
 	if Input.is_action_just_pressed("pause"):
 		get_tree().paused = true
 		$PauseScreen.show()
 		$PauseScreen/Panel/Resume.grab_focus()
+
+
+func get_menus():
+	pass
 
 
 func show_start_menu():
@@ -96,11 +104,26 @@ func new_game():
 
 func reset():
 	mobMgr.mobs_spawned = 0
+	chosen_upgrade = 3
 	$UpgradeOptions.hide()
 	$GameOver.hide()
 	get_tree().paused = false
 	if !relic_selected:
 		relic_select()
+
+
+func next_wave_start():
+	if chosen_upgrade == 3:
+		$SFX_Denied.play()
+	elif chosen_upgrade == 0:
+		player.dmg_rate *= 1.15
+		$WaveOverTimer.start()
+	else:
+		player.speed *= 1.15
+		$WaveOverTimer.start()
+	print("dmg: " + str(player.dmg_rate))
+	print("spd: " + str(player.speed))
+
 
 
 func relic_select():
@@ -145,27 +168,16 @@ func shield_relic():
 	get_tree().paused = false
 
 func damage_upgrade():
-	print("DAMAGE")
-	player.dmg_rate *= 1.1
-	print(player.dmg_rate)
-	# play anim
-	$UpgradeOptions.hide()
-	get_tree().paused = false
-	$WaveOverTimer.start()
+	print("DAMAGE UPGRADE CHOSEN")
+	chosen_upgrade = 0
 
 
 func speed_upgrade():
-	print("SPEED")
-	player.speed *= 1.1
-	print(player.speed)
-	# play anim
-	$UpgradeOptions.hide()
-	get_tree().paused = false
-	$WaveOverTimer.start()
+	print("SPEED UPGRADE CHOSEN")
+	chosen_upgrade = 1
 
 
 func is_wave_completed():
-	
 	var all_killed = true
 	if mobs_killed == max_mobs:
 		return all_killed

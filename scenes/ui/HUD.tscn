@@ -50,6 +50,7 @@ position = Vector2(8.25, 208.25)
 texture = ExtResource("1_gwajb")
 
 [node name="CoinCount" type="Label" parent="MushCoins"]
+layout_mode = 0
 offset_left = 20.25
 offset_top = 200.25
 offset_right = 60.25

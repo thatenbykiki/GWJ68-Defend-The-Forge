@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://cd1vxb7dhpnq6"]
+
+[ext_resource type="Script" path="res://scenes/main.gd" id="1_dgmo2"]
+[ext_resource type="PackedScene" uid="uid://cy8n73o2n832k" path="res://scenes/world/world.tscn" id="1_x1tin"]
+[ext_resource type="PackedScene" uid="uid://cul7x7y4dgjvk" path="res://scenes/player/player.tscn" id="2_t0hxg"]
+[ext_resource type="PackedScene" uid="uid://dru03h78nk0v5" path="res://scenes/mob_spawner.tscn" id="3_p0knj"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_dgmo2")
+
+[node name="World" parent="." instance=ExtResource("1_x1tin")]
+position = Vector2(408, 408)
+scale = Vector2(3, 3)
+
+[node name="MobSpawner" parent="." instance=ExtResource("3_p0knj")]
+
+[node name="Player" parent="." instance=ExtResource("2_t0hxg")]
+position = Vector2(408, 408)
+scale = Vector2(3, 3)
+
+[connection signal="hit_p" from="MobSpawner" to="." method="_on_mob_spawner_hit_p"]
