@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var main = get_node("/root/Main")
-@export var mob_scale = Vector2(3.0, 3.0)
+@export var mob_scale = Vector2(1.0, 1.0)
 
 var mob_scene := preload("res://scenes/interactable/knight.tscn")
 var spawn_points := []
@@ -19,6 +19,7 @@ func _on_timer_timeout():
 		var spawn = spawn_points[randi() % spawn_points.size()]
 		var mob = mob_scene.instantiate()
 		mob.scale = mob_scale
+		#mob.position = Vector2(480, 270)
 		mob.position = spawn.position
 		mob.hit_player.connect(hit)
 		main.add_child(mob)

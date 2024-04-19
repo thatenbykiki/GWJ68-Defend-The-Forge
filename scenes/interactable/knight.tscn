@@ -164,7 +164,7 @@ autostart = true
 [node name="LootPivot" type="Area2D" parent="."]
 
 [node name="LootSpawn" type="CollisionShape2D" parent="LootPivot"]
-position = Vector2(17, 0)
+position = Vector2(8, 0)
 shape = SubResource("CircleShape2D_28qej")
 debug_color = Color(0.505882, 0.580392, 0, 0.419608)
 

@@ -1,18 +1,20 @@
 extends Node2D
 
 @onready var player = get_node("/root/Main/Player")
+@onready var playerAnimTimer = get_node("/root/Main/Player/Timers/AnimTimer")
 @onready var mobMgr = get_node("/root/Main/MobSpawner")
 
-@onready var coin_count = get_node("/root/Main/HUD/CoinCount")
+@onready var coin_count = get_node("/root/Main/HUD/MushCoins/CoinCount")
 @onready var wave_count = get_node("/root/Main/HUD/WaveCounter")
 @onready var relic_sprite = get_node("/root/Main/HUD/RelicSprite")
+
 @onready var heart3 = get_node("/root/Main/HUD/HeartContainer/Heart3")
 @onready var heart2 = get_node("/root/Main/HUD/HeartContainer/Heart2")
 @onready var heart1 = get_node("/root/Main/HUD/HeartContainer/Heart1")
 @onready var heart0 = get_node("/root/Main/HUD/HeartContainer/Heart0")
-@onready var playerHitSFX = get_node("/root/Main/Player/SFX/PlayerHit")
 
-@export var is_controller : bool
+@onready var playerHitSFX = get_node("/root/Main/Player/SFX/PlayerHit")
+@onready var bgmToggle = get_node("/root/Main/PauseScreen/Panel/BGMToggle")
 
 var sword_icon = preload("res://assets/icons/Sword_Icon.png")
 var shield_icon = preload("res://assets/icons/Shield_Icon.png")
@@ -25,9 +27,6 @@ var wave : int
 var chosen_relic : int # 0: Obelisk, 1: Zweihander, 2: Lava Boots
 var relic_selected := false
 
-signal player_is_hit
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	$GameOver/Button.pressed.connect(new_game)
 	$UpgradeOptions/DamageUp.pressed.connect(damage_upgrade)
@@ -35,8 +34,53 @@ func _ready():
 	$RelicSelect/Boots.pressed.connect(boots_relic)
 	$RelicSelect/Zweihander.pressed.connect(sword_relic)
 	$RelicSelect/Obelisk.pressed.connect(shield_relic)
+	$PauseScreen/Panel/BGMToggle.toggled.connect(toggle_bgm)
+	$PauseScreen/Panel/Resume.pressed.connect(resume_game)
+	$Controls/Panel/Button.pressed.connect(game_start)
+	$BGM.playing = true
+	player.reset()	
+	show_start_menu()
+
+func _process(_delta):
+	update_ui()
+	if is_wave_completed():
+		get_tree().paused = true
+		wave += 1
+		mobs_killed = 0
+		max_mobs += 2
+		mobMgr.mobs_spawned = 0
+		$UpgradeOptions.show()
+		$UpgradeOptions/DamageUp.grab_focus()
+		
+	if Input.is_action_just_pressed("pause"):
+		get_tree().paused = true
+		$PauseScreen.show()
+		$PauseScreen/Panel/Resume.grab_focus()
+
+
+func show_start_menu():
+	get_tree().paused = true
+	$Controls.show()
+	$Controls/Panel/Button.grab_focus()
+
+
+func game_start():
+	$Controls.hide()
 	new_game()
 	relic_select()
+
+
+func toggle_bgm(toggled):
+	if toggled:
+		$BGM.playing = true
+	if !toggled:
+		$BGM.playing = false
+
+
+func resume_game():
+	$PauseScreen.hide()
+	get_tree().paused = false
+
 
 func new_game():
 	get_tree().paused = false
@@ -57,21 +101,6 @@ func reset():
 	get_tree().paused = false
 	if !relic_selected:
 		relic_select()
-
-
-func _process(_delta):
-	update_ui()
-	if is_wave_completed():
-		wave += 1
-		mobs_killed = 0
-		max_mobs += 2
-		mobMgr.mobs_spawned = 0
-		get_tree().paused = true
-		$UpgradeOptions.show()
-		$UpgradeOptions/DamageUp.grab_focus()
-	
-	#if $BGM.playing == false:
-		#$BGM.play()
 
 
 func relic_select():
@@ -97,6 +126,7 @@ func sword_relic():
 	relic_selected = true
 	player.dmg_rate *= 1.5
 	player.speed /= 1.25
+	player.max_health = 4
 	chosen_relic = 1
 	relic_sprite.texture = sword_icon
 	$RelicSelect.hide()
@@ -137,7 +167,7 @@ func speed_upgrade():
 func is_wave_completed():
 	
 	var all_killed = true
-	if mobs_killed >= max_mobs:
+	if mobs_killed == max_mobs:
 		return all_killed
 	else:
 		return false
@@ -239,9 +269,12 @@ func update_health():
 
 
 func _on_mob_spawner_hit_p():
-	player.health -= 1
-	playerHitSFX.play()
-	print("player hit!")
+	var r = randi_range(0, 99)
+	if r >= 50:
+		player.health -= 1
+		playerHitSFX.play()
+		player.anim_state = "hit"
+		playerAnimTimer.start(.6)
 
 
 func _on_wave_over_timer_timeout():
