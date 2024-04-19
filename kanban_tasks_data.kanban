@@ -11,16 +11,18 @@
 			"uuid": "3a33ad4f-54cc-4267-a448-ee1ddd1043ac",
 			"title": "Todo",
 			"tasks": [
+				"4e0a85f7-d9f0-4ab9-8476-a4c91c642b01",
 				"2d9d6579-1522-4804-b1c7-0d8d34618faa",
-				"ff73d48d-0db0-4519-9699-c0bdaa907d93"
+				"ff73d48d-0db0-4519-9699-c0bdaa907d93",
+				"46ed0ac9-e01c-4ad1-ab7d-c9c70b40490b"
 			]
 		},
 		{
 			"uuid": "1034fdc5-7e37-44a0-88d9-1218616fa7a0",
 			"title": "Doing",
 			"tasks": [
-				"713dbe4b-ebe8-4874-8ac4-9dfd9f4b3bd9",
-				"f61f7523-8a39-45e7-be4f-371f77a457ba",
+				"546b3733-6519-413d-9844-cfec2d1ad9ad",
+				"f52ab3eb-5904-47fe-8bba-5dc33310dfba",
 				"e0dc153e-a35b-4abd-a36b-756b38d9717f"
 			]
 		},
@@ -28,6 +30,12 @@
 			"uuid": "10be5e17-dffc-45e3-9565-b479206f3338",
 			"title": "Done",
 			"tasks": [
+				"dd4470c2-9723-47d5-89d9-79a8f1e29323",
+				"813644c0-4f40-430d-a288-2afedcdd3e6b",
+				"cd440cfd-8fb2-4c18-929c-438e6f80f6c7",
+				"6f6d08f7-e5f0-4254-940c-93b6363849f5",
+				"61ed93fc-295f-49f2-932d-ea7e28958768",
+				"7e007410-5be8-4a55-9d0a-0cace589bb6b",
 				"637b36e6-c4ae-4758-b4cb-4623e442a154",
 				"7314f4b2-cf20-4981-87f7-c204b3aac8b2",
 				"5fd56990-83f9-4d67-a79f-05fe970d2c31",
@@ -66,13 +74,6 @@
 			"steps": []
 		},
 		{
-			"uuid": "713dbe4b-ebe8-4874-8ac4-9dfd9f4b3bd9",
-			"title": "TODO : SFX for Powerups",
-			"description": "",
-			"category": "a15610a5-ce84-436d-9433-2f52b5c09443",
-			"steps": []
-		},
-		{
 			"uuid": "f61f7523-8a39-45e7-be4f-371f77a457ba",
 			"title": "TODO : Visual for Powerups",
 			"description": "",
@@ -102,7 +103,102 @@
 		},
 		{
 			"uuid": "e0dc153e-a35b-4abd-a36b-756b38d9717f",
-			"title": "FIX : Controller : Upgrade screen disappears without selection",
+			"title": "FIX : Upgrade screen disappears without selection",
+			"description": "Only on even rounds",
+			"category": "a15610a5-ce84-436d-9433-2f52b5c09443",
+			"steps": []
+		},
+		{
+			"uuid": "7e007410-5be8-4a55-9d0a-0cace589bb6b",
+			"title": "TODO : Knockback/Stun",
+			"description": "",
+			"category": "a15610a5-ce84-436d-9433-2f52b5c09443",
+			"steps": []
+		},
+		{
+			"uuid": "813644c0-4f40-430d-a288-2afedcdd3e6b",
+			"title": "TODO : Start screen",
+			"description": "",
+			"category": "a15610a5-ce84-436d-9433-2f52b5c09443",
+			"steps": []
+		},
+		{
+			"uuid": "61ed93fc-295f-49f2-932d-ea7e28958768",
+			"title": "TODO : Pause Menu",
+			"description": "",
+			"category": "a15610a5-ce84-436d-9433-2f52b5c09443",
+			"steps": []
+		},
+		{
+			"uuid": "6f6d08f7-e5f0-4254-940c-93b6363849f5",
+			"title": "FIX : Can be overhealed ",
+			"description": "",
+			"category": "a15610a5-ce84-436d-9433-2f52b5c09443",
+			"steps": []
+		},
+		{
+			"uuid": "f52ab3eb-5904-47fe-8bba-5dc33310dfba",
+			"title": "MECHANIC : Upgrades cost mushcoins",
+			"description": "",
+			"category": "a15610a5-ce84-436d-9433-2f52b5c09443",
+			"steps": []
+		},
+		{
+			"uuid": "dd4470c2-9723-47d5-89d9-79a8f1e29323",
+			"title": " FIX : More noticeable when player hit",
+			"description": "",
+			"category": "a15610a5-ce84-436d-9433-2f52b5c09443",
+			"steps": []
+		},
+		{
+			"uuid": "cd440cfd-8fb2-4c18-929c-438e6f80f6c7",
+			"title": "TODO : Balance hitboxes",
+			"description": "",
+			"category": "a15610a5-ce84-436d-9433-2f52b5c09443",
+			"steps": []
+		},
+		{
+			"uuid": "46ed0ac9-e01c-4ad1-ab7d-c9c70b40490b",
+			"title": "Major Update",
+			"description": "",
+			"category": "a15610a5-ce84-436d-9433-2f52b5c09443",
+			"steps": [
+				{
+					"details": "Breakable Walls",
+					"done": false
+				},
+				{
+					"details": "Second Mob",
+					"done": false
+				},
+				{
+					"details": "Mobs randomly target player or wall",
+					"done": false
+				},
+				{
+					"details": "Win Condition after X Rounds (offer Endless mode)",
+					"done": false
+				},
+				{
+					"details": "Boss Enemy",
+					"done": false
+				},
+				{
+					"details": "Implement Relics",
+					"done": false
+				}
+			]
+		},
+		{
+			"uuid": "4e0a85f7-d9f0-4ab9-8476-a4c91c642b01",
+			"title": "BUG : Pausing after a wave unpauses when the WaveOverTimer resets",
+			"description": "",
+			"category": "a15610a5-ce84-436d-9433-2f52b5c09443",
+			"steps": []
+		},
+		{
+			"uuid": "546b3733-6519-413d-9844-cfec2d1ad9ad",
+			"title": "FIX : Camera/Viewport stays centered in fullscreen. Unintended",
 			"description": "",
 			"category": "a15610a5-ce84-436d-9433-2f52b5c09443",
 			"steps": []

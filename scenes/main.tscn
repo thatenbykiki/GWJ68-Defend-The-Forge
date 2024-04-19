@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cd1vxb7dhpnq6"]
+[gd_scene load_steps=14 format=3 uid="uid://cd1vxb7dhpnq6"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_dgmo2"]
 [ext_resource type="PackedScene" uid="uid://cy8n73o2n832k" path="res://scenes/world/world.tscn" id="1_x1tin"]
@@ -10,19 +10,25 @@
 [ext_resource type="PackedScene" uid="uid://ydn0xlqygnx6" path="res://scenes/ui/upgrade_options.tscn" id="8_m4bh5"]
 [ext_resource type="PackedScene" uid="uid://d0nxl2lveo2re" path="res://scenes/ui/relic_select.tscn" id="9_l14st"]
 [ext_resource type="AudioStream" uid="uid://bqvc8biks76gq" path="res://assets/sfx/013_Confirm_03.wav" id="10_ieeyp"]
+[ext_resource type="PackedScene" uid="uid://buqtcxhb1q7nh" path="res://scenes/ui/pause_screen.tscn" id="11_fnddk"]
+[ext_resource type="Script" path="res://scenes/ui/pause_screen.gd" id="12_kwc28"]
+[ext_resource type="PackedScene" uid="uid://b5ggnbdtj3hdg" path="res://scenes/ui/controls.tscn" id="13_xmllp"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_dgmo2")
 
 [node name="World" parent="." instance=ExtResource("1_x1tin")]
-position = Vector2(408, 408)
-scale = Vector2(3, 3)
+position = Vector2(480, 270)
 
 [node name="MobSpawner" parent="." instance=ExtResource("3_p0knj")]
 
 [node name="Player" parent="." instance=ExtResource("2_t0hxg")]
-position = Vector2(224, 289)
-scale = Vector2(3, 3)
+position = Vector2(480, 270)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(3, 3)
+position_smoothing_enabled = true
+position_smoothing_speed = 4.0
 
 [node name="WaveOverTimer" type="Timer" parent="."]
 process_mode = 2
@@ -39,8 +45,9 @@ process_mode = 2
 visible = false
 
 [node name="BGM" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 stream = ExtResource("6_ia4l7")
-volume_db = -25.0
+volume_db = -16.086
 
 [node name="UpgradeOptions" parent="." instance=ExtResource("8_m4bh5")]
 process_mode = 2
@@ -48,9 +55,19 @@ visible = false
 
 [node name="RelicSelect" parent="." instance=ExtResource("9_l14st")]
 process_mode = 2
+visible = false
 
 [node name="SFX_Confirm" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_ieeyp")
+
+[node name="PauseScreen" parent="." instance=ExtResource("11_fnddk")]
+process_mode = 2
+visible = false
+script = ExtResource("12_kwc28")
+
+[node name="Controls" parent="." instance=ExtResource("13_xmllp")]
+process_mode = 2
+visible = false
 
 [connection signal="hit_p" from="MobSpawner" to="." method="_on_mob_spawner_hit_p"]
 [connection signal="hit_p" from="MobSpawner" to="Player" method="_on_mob_spawner_hit_p"]
