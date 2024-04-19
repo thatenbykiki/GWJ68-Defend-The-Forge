@@ -19,6 +19,7 @@ config/icon="res://assets/icons/the_great_forge-BIG_ICON.png"
 
 window/size/viewport_width=960
 window/size/viewport_height=540
+window/stretch/mode="viewport"
 mouse_cursor/custom_image="res://assets/ui/cursor_smallx2t.png"
 
 [editor_plugins]

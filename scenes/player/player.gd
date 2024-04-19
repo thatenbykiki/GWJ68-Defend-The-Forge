@@ -30,7 +30,7 @@ var spawn_point : Vector2
 var angle
 
 func _ready():
-	spawn_point = get_viewport_rect().size / 2
+	spawn_point = Vector2(480, 270)
 	reset()
 
 
@@ -47,7 +47,7 @@ func reset():
 	dmg_rate = BASE_DAMAGE
 	speed = BASE_SPEED
 	health = BASE_HEALTH
-	#position = spawn_point
+	position = spawn_point
 	sprite.play("idle1")
 
 func _input(event: InputEvent) -> void:
