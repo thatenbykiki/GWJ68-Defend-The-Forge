@@ -1,9 +1,12 @@
 extends Node2D
 
 @onready var player = get_node("/root/Main/Player")
+@onready var playerHealthbar = get_node("/root/Main/Player/HealthBar")
 @onready var playerAnimTimer = get_node("/root/Main/Player/Timers/AnimTimer")
 @onready var mobMgr = get_node("/root/Main/MobSpawner")
 
+@onready var atk_stat = get_node("/root/Main/HUD/Stats/Attack")
+@onready var spd_stat = get_node("/root/Main/HUD/Stats/Speed")
 @onready var coin_count = get_node("/root/Main/HUD/MushCoins/CoinCount")
 @onready var wave_count = get_node("/root/Main/HUD/WaveCounter")
 @onready var relic_sprite = get_node("/root/Main/HUD/RelicSprite")
@@ -20,13 +23,15 @@ var sword_icon = preload("res://assets/icons/Sword_Icon.png")
 var shield_icon = preload("res://assets/icons/Shield_Icon.png")
 var boots_icon = preload("res://assets/icons/Boots_Icon.png")
 
+var music_on : bool
+
+var mob_dmg_rate := 20.0
 var max_mobs : int
 var mobs_killed := 0
 var coins : int
 var wave : int
 var chosen_relic : int # 0: Obelisk, 1: Zweihander, 2: Lava Boots
 var relic_selected := false
-
 var chosen_upgrade : int # 0: Damage, 1: Speed, 3: INVALID
 
 func _ready():
@@ -42,16 +47,18 @@ func _ready():
 	$Controls/Panel/Button.pressed.connect(game_start)
 	
 	$BGM.playing = true
+	music_on = true
 	player.reset()	
 	show_start_menu()
 
 func _process(_delta):
 	update_ui()
+	loop_bgm()
 	if is_wave_completed():
 		get_tree().paused = true
 		wave += 1
 		mobs_killed = 0
-		max_mobs += 2
+		max_mobs += 1
 		mobMgr.mobs_spawned = 0
 		$UpgradeOptions.show()
 		$UpgradeOptions/Panel/DamageUp.grab_focus()
@@ -81,8 +88,16 @@ func game_start():
 func toggle_bgm(toggled):
 	if toggled:
 		$BGM.playing = true
+		music_on = true
 	if !toggled:
 		$BGM.playing = false
+		music_on = false
+
+func loop_bgm():
+	if music_on && !$BGM.playing:
+		$BGM.play()
+	else:
+		pass
 
 
 func resume_game():
@@ -117,9 +132,11 @@ func next_wave_start():
 		$SFX_Denied.play()
 	elif chosen_upgrade == 0:
 		player.dmg_rate *= 1.15
+		$UpgradeOptions.hide()
 		$WaveOverTimer.start()
 	else:
 		player.speed *= 1.15
+		$UpgradeOptions.hide()
 		$WaveOverTimer.start()
 	print("dmg: " + str(player.dmg_rate))
 	print("spd: " + str(player.speed))
@@ -136,10 +153,11 @@ func boots_relic():
 	$SFX_Confirm.play()
 	relic_selected = true
 	player.speed *= 1.5
-	player.health = 3
-	player.max_health = 4
-	chosen_relic = 3
+	player.health = 75
+	player.max_health = 100
+	chosen_relic = 2
 	relic_sprite.texture = boots_icon
+	playerHealthbar.max_value = 100
 	$RelicSelect.hide()
 	get_tree().paused = false
 
@@ -149,9 +167,10 @@ func sword_relic():
 	relic_selected = true
 	player.dmg_rate *= 1.5
 	player.speed /= 1.25
-	player.max_health = 4
+	player.max_health = 100
 	chosen_relic = 1
 	relic_sprite.texture = sword_icon
+	playerHealthbar.max_value = 100
 	$RelicSelect.hide()
 	get_tree().paused = false
 
@@ -159,11 +178,12 @@ func sword_relic():
 func shield_relic():
 	$SFX_Confirm.play()
 	relic_selected = true
-	player.health = 8
-	player.max_health = 8
+	player.health = 200
+	player.max_health = 200
 	player.dmg_rate /= 1.25
 	chosen_relic = 0
 	relic_sprite.texture = shield_icon
+	playerHealthbar.max_value = 200
 	$RelicSelect.hide()
 	get_tree().paused = false
 
@@ -196,12 +216,16 @@ func game_over():
 
 
 func update_ui():
+	var atkRounded = round(player.dmg_rate)
+	var spdRounded = round(player.speed)
 	coin_count.text = str(coins)
 	wave_count.text = "WAVE " + str(wave)
+	atk_stat.text = "ATTACK: " + str(atkRounded)
+	spd_stat.text = " SPEED: " + str(spdRounded)
 	update_health()
 
 
-func update_health():
+func _change_heart_frames():
 	if player.max_health == 8:
 		match player.health:
 			8:
@@ -280,10 +304,16 @@ func update_health():
 				game_over()
 
 
+func update_health():
+	playerHealthbar.value = player.health
+	if player.health <= 0:
+		game_over()
+
+
 func _on_mob_spawner_hit_p():
 	var r = randi_range(0, 99)
 	if r >= 50:
-		player.health -= 1
+		player.health -= mob_dmg_rate
 		playerHitSFX.play()
 		player.anim_state = "hit"
 		playerAnimTimer.start(.6)

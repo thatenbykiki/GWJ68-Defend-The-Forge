@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cs0es2yjn2ku1"
-path="res://.godot/imported/Halo Anim 1.png-751aef162509d5fb15316626dc44ed65.ctex"
+uid="uid://cey57qbpexwo0"
+path="res://.godot/imported/wall_healthbar-Layer 2.png-592beeab6c41bd11346beb39d9af5c03.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/icons/Halo Anim 1.png"
-dest_files=["res://.godot/imported/Halo Anim 1.png-751aef162509d5fb15316626dc44ed65.ctex"]
+source_file="res://assets/sprites/wall/wall_healthbar-Layer 2.png"
+dest_files=["res://.godot/imported/wall_healthbar-Layer 2.png-592beeab6c41bd11346beb39d9af5c03.ctex"]
 
 [params]
 

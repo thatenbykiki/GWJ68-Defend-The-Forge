@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cd1vxb7dhpnq6"]
+[gd_scene load_steps=16 format=3 uid="uid://cd1vxb7dhpnq6"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_dgmo2"]
 [ext_resource type="PackedScene" uid="uid://cy8n73o2n832k" path="res://scenes/world/world.tscn" id="1_x1tin"]
@@ -14,16 +14,13 @@
 [ext_resource type="PackedScene" uid="uid://buqtcxhb1q7nh" path="res://scenes/ui/pause_screen.tscn" id="11_fnddk"]
 [ext_resource type="Script" path="res://scenes/ui/pause_screen.gd" id="12_kwc28"]
 [ext_resource type="PackedScene" uid="uid://b5ggnbdtj3hdg" path="res://scenes/ui/controls.tscn" id="13_xmllp"]
+[ext_resource type="PackedScene" uid="uid://b2skcmaxe0d07" path="res://forge_wall.tscn" id="15_b5an2"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_dgmo2")
 
 [node name="World" parent="." instance=ExtResource("1_x1tin")]
-y_sort_enabled = true
 position = Vector2(480, 270)
-layer_0/y_sort_enabled = true
-layer_1/y_sort_enabled = true
-layer_1/z_index = 1
 
 [node name="MobSpawner" parent="." instance=ExtResource("3_p0knj")]
 
@@ -76,6 +73,9 @@ script = ExtResource("12_kwc28")
 [node name="Controls" parent="." instance=ExtResource("13_xmllp")]
 process_mode = 2
 visible = false
+
+[node name="BreakableWall" parent="." instance=ExtResource("15_b5an2")]
+position = Vector2(480, 152)
 
 [connection signal="hit_p" from="MobSpawner" to="." method="_on_mob_spawner_hit_p"]
 [connection signal="hit_p" from="MobSpawner" to="Player" method="_on_mob_spawner_hit_p"]

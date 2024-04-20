@@ -1,7 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://buqtcxhb1q7nh"]
+[gd_scene load_steps=9 format=3 uid="uid://buqtcxhb1q7nh"]
 
 [ext_resource type="StyleBox" uid="uid://c2acqgbbgdxop" path="res://scenes/game_over_stylebox.tres" id="1_7oeai"]
 [ext_resource type="FontFile" uid="uid://bxe3w4luhe7go" path="res://assets/ui/monogram-extended.ttf" id="2_yrosl"]
+[ext_resource type="LabelSettings" uid="uid://dgudwg7rjw1aj" path="res://scenes/game_over_fonty.tres" id="3_fgx62"]
+[ext_resource type="Texture2D" uid="uid://c88oawka4d451" path="res://assets/icons/Sword_Icon.png" id="4_3d0bw"]
+[ext_resource type="LabelSettings" uid="uid://c5y5na1u3i3et" path="res://scenes/ui_font.tres" id="5_i05ra"]
+[ext_resource type="Texture2D" uid="uid://dhks83u63fefl" path="res://assets/icons/Boots_Icon.png" id="6_lxw0s"]
+[ext_resource type="Texture2D" uid="uid://j512eisikxf4" path="res://assets/icons/Shield_Icon.png" id="7_1a047"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_tq4yo"]
 font = ExtResource("2_yrosl")
@@ -12,14 +17,15 @@ outline_color = Color(0, 0, 0, 1)
 [node name="PauseScreen" type="CanvasLayer"]
 
 [node name="Panel" type="Panel" parent="."]
-anchors_preset = 14
+anchors_preset = 8
+anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 50.0
-offset_top = -103.0
-offset_right = -50.0
-offset_bottom = 103.0
+offset_left = -360.0
+offset_top = -230.0
+offset_right = 360.0
+offset_bottom = 230.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = ExtResource("1_7oeai")
@@ -33,9 +39,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -54.0
-offset_top = -63.0
+offset_top = -338.0
 offset_right = 54.0
-offset_bottom = -29.0
+offset_bottom = -304.0
 grow_horizontal = 2
 grow_vertical = 0
 focus_neighbor_top = NodePath("../Resume")
@@ -65,12 +71,84 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -70.0
-offset_top = -17.0
+offset_top = -165.0
 offset_right = 70.0
-offset_bottom = 17.0
+offset_bottom = -131.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_neighbor_bottom = NodePath("../BGMToggle")
 theme_override_fonts/font = ExtResource("2_yrosl")
 theme_override_font_sizes/font_size = 32
 text = "Resume Game"
+
+[node name="RelicsLabel" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -108.0
+offset_top = -66.0
+offset_right = 108.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "RELIC ABILITIES"
+label_settings = ExtResource("3_fgx62")
+horizontal_alignment = 1
+
+[node name="Relics" type="Control" parent="Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="SwordSprite" type="Sprite2D" parent="Panel/Relics"]
+position = Vector2(-200, -180)
+scale = Vector2(3, 3)
+texture = ExtResource("4_3d0bw")
+
+[node name="Label" type="Label" parent="Panel/Relics/SwordSprite"]
+offset_left = 12.3333
+offset_top = -7.66667
+offset_right = 132.333
+offset_bottom = 15.3333
+text = "TRIPLE ATTACK POWER"
+label_settings = ExtResource("5_i05ra")
+horizontal_alignment = 1
+
+[node name="BootsSprite" type="Sprite2D" parent="Panel/Relics"]
+position = Vector2(-200, -108)
+scale = Vector2(3, 3)
+texture = ExtResource("6_lxw0s")
+
+[node name="Label2" type="Label" parent="Panel/Relics/BootsSprite"]
+offset_left = 12.3333
+offset_top = -7.33333
+offset_right = 132.333
+offset_bottom = 15.6667
+text = "DOUBLE SPEED"
+label_settings = ExtResource("5_i05ra")
+horizontal_alignment = 1
+
+[node name="ShieldSprite" type="Sprite2D" parent="Panel/Relics"]
+position = Vector2(-200, -36)
+scale = Vector2(3, 3)
+texture = ExtResource("7_1a047")
+
+[node name="Label3" type="Label" parent="Panel/Relics/ShieldSprite"]
+offset_left = 12.3333
+offset_top = -8.33334
+offset_right = 132.333
+offset_bottom = 14.6667
+text = "INVULNERABILITY"
+label_settings = ExtResource("5_i05ra")
+horizontal_alignment = 1

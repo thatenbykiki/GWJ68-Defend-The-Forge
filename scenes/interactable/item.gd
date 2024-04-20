@@ -8,7 +8,7 @@ extends CharacterBody2D
 
 var item_type : int # 0: coin, 1: health
 
-var coin_icon = preload("res://assets/icons/Chicken_of_the_Wood.png")
+var coin_icon = preload("res://assets/icons/Honey_Fungus.png")
 var health_icon = preload("res://assets/icons/health_icon.png")
 
 var textures = [coin_icon, health_icon]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cs0es2yjn2ku1"
-path="res://.godot/imported/Halo Anim 1.png-751aef162509d5fb15316626dc44ed65.ctex"
+uid="uid://ciqrk5iqqj7i6"
+path="res://.godot/imported/LB_PressLayer 3.png-3e4eea70a68778c4909c3c1ced610304.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/icons/Halo Anim 1.png"
-dest_files=["res://.godot/imported/Halo Anim 1.png-751aef162509d5fb15316626dc44ed65.ctex"]
+source_file="res://assets/ui/Animations/LB_Press/LB_PressLayer 3.png"
+dest_files=["res://.godot/imported/LB_PressLayer 3.png-3e4eea70a68778c4909c3c1ced610304.ctex"]
 
 [params]
 

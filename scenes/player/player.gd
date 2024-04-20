@@ -5,6 +5,8 @@ signal swing_sword
 @export var is_controller : bool
 
 @onready var main = get_node("/root/Main")
+@onready var ability = get_node("/root/Main/HUD/Ability")
+
 
 @onready var sprite = $AnimatedSprite2D
 @onready var weapPivot = $WeaponPivot
@@ -12,26 +14,37 @@ signal swing_sword
 @onready var atkArea = $WeaponPivot/AttackArea
 @onready var swordSprite = $WeaponPivot/SwordSprite
 @onready var atkTimer = $Timers/AttackTimer
+@onready var abilityTimer = $Timers/AbilityTimer
+@onready var cdTimer = $Timers/CooldownTimer
 
 var speed := 50.0
 var dmg_rate := 35.0
-var health := 4
+var health := 100.0
 
-const BASE_HEALTH := 4
+const BASE_HEALTH := 100.0
 const BASE_SPEED := 50.0
-const BASE_DAMAGE := 35
+const BASE_DAMAGE := 35.0
 var max_health = BASE_HEALTH
 
 var anim_state : String
+
+var can_relic : bool
+var relic_on_cd : bool
 
 var is_attacking : bool
 var can_attack := true
 var spawn_point : Vector2
 var angle
 
+var cur_atk : float
+var cur_speed : float
+var cur_health : int
+
+
 func _ready():
 	spawn_point = Vector2(480, 270)
 	reset()
+	ability.show()
 
 
 func _physics_process(_delta):
@@ -39,7 +52,6 @@ func _physics_process(_delta):
 	sprite.play()
 	update_anims()
 	move_and_slide()
-	
 	#position = position.clamp(Vector2.ZERO, get_viewport_rect().size)
 
 
@@ -47,6 +59,11 @@ func reset():
 	dmg_rate = BASE_DAMAGE
 	speed = BASE_SPEED
 	health = BASE_HEALTH
+	relic_on_cd = false
+	can_relic = true
+	cdTimer.stop()
+	abilityTimer.stop()
+	ability.text = "RELIC CHARGED!"
 	position = spawn_point
 	sprite.play("idle1")
 
@@ -91,7 +108,29 @@ func get_input():
 			# denied sfx
 	
 	if Input.is_action_just_pressed("use_relic"):
-		print("USED RELIC")
+		if !relic_on_cd && can_relic:
+			print("USED RELIC")
+			relic_ability(main.chosen_relic)
+			can_relic = false
+
+
+func relic_ability(relic):
+	match relic:
+		0:
+			ability.text = "INVULNERABLE!"
+			health = 1000
+		1:
+			ability.text = "TRIPLE DAMAGE!"
+			cur_atk = dmg_rate
+			dmg_rate *= 3.0
+		2:
+			ability.text = "FAST AS F*!"
+			cur_speed = speed
+			speed *= 2
+	ability.show()
+	$HaloAnim.show()
+	$HaloAnim.play()
+	abilityTimer.start(5)
 
 
 func speed_upgrade():
@@ -105,10 +144,11 @@ func damage_upgrade():
 
 
 func heal_item():
-	health += 1
+	print("before heal: " + str(health))
+	health += (max_health * 0.20)
 	if health > max_health:
 		health = max_health
-
+	print("after heal: " + str(health))
 
 func attack():
 	is_attacking = true
@@ -116,10 +156,6 @@ func attack():
 	atkTimer.start(.5)
 	slash_sfx()
 	swordSprite.play("swing")
-
-
-func relic_ability():
-	pass
 
 
 func slash_sfx():
@@ -154,3 +190,25 @@ func _on_mob_spawner_hit_p():
 
 func _on_anim_timer_timeout():
 	anim_state = "run"
+
+
+func _on_ability_timer_timeout():
+	match main.chosen_relic:
+		0:
+			health = max_health
+		1:
+			dmg_rate = cur_atk
+		2:
+			speed = cur_speed
+	ability.hide()
+	$HaloAnim.hide()
+	$HaloAnim.stop()
+	relic_on_cd = true
+	cdTimer.start(8)
+
+
+func _on_cooldown_timer_timeout():
+	relic_on_cd = false
+	can_relic = true
+	ability.text = "RELIC CHARGED!"
+	ability.show()
