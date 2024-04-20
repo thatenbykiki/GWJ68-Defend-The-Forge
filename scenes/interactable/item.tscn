@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://smt7dfullky1"]
 
 [ext_resource type="Script" path="res://scenes/interactable/item.gd" id="1_pavnt"]
-[ext_resource type="Texture2D" uid="uid://d4era6v033c23" path="res://assets/icons/Chicken_of_the_Wood.png" id="2_uew80"]
+[ext_resource type="Texture2D" uid="uid://boc3ygkxg37r0" path="res://assets/icons/Honey_Fungus.png" id="2_lkeol"]
 [ext_resource type="AudioStream" uid="uid://c7b6fittdynwh" path="res://assets/sfx/051_use_item_01.wav" id="3_b381m"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ex52p"]
@@ -26,7 +26,7 @@ shape = SubResource("CircleShape2D_ex52p")
 debug_color = Color(0.509804, 0.576471, 0.180392, 0.419608)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_uew80")
+texture = ExtResource("2_lkeol")
 
 [node name="PickupArea" type="Area2D" parent="."]
 position = Vector2(7, 9)

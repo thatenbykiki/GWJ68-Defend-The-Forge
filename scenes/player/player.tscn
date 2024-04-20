@@ -1,29 +1,37 @@
-[gd_scene load_steps=147 format=3 uid="uid://cul7x7y4dgjvk"]
+[gd_scene load_steps=160 format=3 uid="uid://cul7x7y4dgjvk"]
 
 [ext_resource type="Texture2D" uid="uid://tf882xal635c" path="res://assets/sprites/player/RUN/South/Sprite Sheet1.png" id="1_b840g"]
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_xgk0h"]
 [ext_resource type="Texture2D" uid="uid://bt7hnpsstps72" path="res://assets/sprites/player/RUN/South/Sprite Sheet2.png" id="2_14r61"]
+[ext_resource type="Texture2D" uid="uid://djb4bfg08a6qt" path="res://assets/icons/HaloAnim/Sprite Sheet1.png" id="2_861ea"]
 [ext_resource type="Texture2D" uid="uid://dnwrgwxp2bu6d" path="res://assets/sprites/player/RUN/East/Sprite Sheet9.png" id="2_ion6k"]
 [ext_resource type="Texture2D" uid="uid://p81qefco63hx" path="res://assets/sprites/player/ATTACK/East/Sprite Sheet9.png" id="2_p4p0v"]
 [ext_resource type="Texture2D" uid="uid://6mhmmxhu6nay" path="res://assets/sprites/player/RUN/South/Sprite Sheet3.png" id="3_1uj3o"]
 [ext_resource type="Texture2D" uid="uid://e5cpay5jipxe" path="res://assets/sprites/player/RUN/East/Sprite Sheet10.png" id="3_78su2"]
+[ext_resource type="Texture2D" uid="uid://dmw8kse4v4av1" path="res://assets/icons/HaloAnim/Sprite Sheet2.png" id="3_bh5bx"]
 [ext_resource type="Texture2D" uid="uid://bugtwsje0v4gq" path="res://assets/sprites/player/ATTACK/East/Sprite Sheet10.png" id="3_d74dm"]
 [ext_resource type="Texture2D" uid="uid://ca2wlims771b7" path="res://assets/sprites/player/ATTACK/East/Sprite Sheet11.png" id="4_5ghmq"]
 [ext_resource type="Texture2D" uid="uid://ddxaekbat2g60" path="res://assets/sprites/player/RUN/East/Sprite Sheet11.png" id="4_du58h"]
 [ext_resource type="Texture2D" uid="uid://bkt1ocw62dhsh" path="res://assets/sprites/player/RUN/South/Sprite Sheet4.png" id="4_oswkc"]
+[ext_resource type="Texture2D" uid="uid://cb714ocir56mp" path="res://assets/icons/HaloAnim/Sprite Sheet3.png" id="4_xo62r"]
 [ext_resource type="Texture2D" uid="uid://crcwkhnw57l38" path="res://assets/sprites/player/RUN/East/Sprite Sheet12.png" id="5_ftwj0"]
 [ext_resource type="Texture2D" uid="uid://dfyuynmjtywik" path="res://assets/sprites/player/RUN/South/Sprite Sheet5.png" id="5_hg16j"]
 [ext_resource type="Texture2D" uid="uid://uc70y3ywv5s5" path="res://assets/sprites/player/ATTACK/East/Sprite Sheet12.png" id="5_ldmpt"]
+[ext_resource type="Texture2D" uid="uid://6j4yeblu4w3f" path="res://assets/icons/HaloAnim/Sprite Sheet4.png" id="5_o0y04"]
 [ext_resource type="Texture2D" uid="uid://br15065yn3mps" path="res://assets/sprites/player/ATTACK/East/Sprite Sheet13.png" id="6_5j6an"]
 [ext_resource type="Texture2D" uid="uid://cs0r2tc4wr4m3" path="res://assets/sprites/player/RUN/East/Sprite Sheet13.png" id="6_2287m"]
+[ext_resource type="Texture2D" uid="uid://ywxj3bb8pdlq" path="res://assets/icons/HaloAnim/Sprite Sheet5.png" id="6_krobi"]
 [ext_resource type="Texture2D" uid="uid://6er870shv1wp" path="res://assets/sprites/player/RUN/South/Sprite Sheet6.png" id="6_mh3xa"]
 [ext_resource type="Texture2D" uid="uid://cf3jtf3td0pea" path="res://assets/sprites/player/RUN/South/Sprite Sheet7.png" id="7_4n777"]
 [ext_resource type="Texture2D" uid="uid://bw0hshyhyrmuw" path="res://assets/sprites/player/RUN/East/Sprite Sheet14.png" id="7_tuhno"]
 [ext_resource type="Texture2D" uid="uid://4m1yofwr06dv" path="res://assets/sprites/player/ATTACK/East/Sprite Sheet14.png" id="7_xjj5c"]
+[ext_resource type="Texture2D" uid="uid://byq1sddrxy6sh" path="res://assets/icons/HaloAnim/Sprite Sheet6.png" id="7_xl4q2"]
 [ext_resource type="Texture2D" uid="uid://iuj4u4xx50tn" path="res://assets/sprites/player/RUN/East/Sprite Sheet15.png" id="8_f051b"]
+[ext_resource type="Texture2D" uid="uid://dyl3oqti3y7ra" path="res://assets/icons/HaloAnim/Sprite Sheet7.png" id="8_hrdui"]
 [ext_resource type="Texture2D" uid="uid://cjdodktpt7uuv" path="res://assets/sprites/player/RUN/South/Sprite Sheet8.png" id="8_l5l7d"]
 [ext_resource type="Texture2D" uid="uid://xe7ksm1i0c2r" path="res://assets/sprites/player/ATTACK/East/Sprite Sheet15.png" id="8_oqr5q"]
 [ext_resource type="Texture2D" uid="uid://bduwlgwv030hv" path="res://assets/sprites/player/ATTACK/East/Sprite Sheet16.png" id="9_5bkny"]
+[ext_resource type="Texture2D" uid="uid://dl50cbvmwm47s" path="res://assets/icons/HaloAnim/Sprite Sheet8.png" id="9_35vt8"]
 [ext_resource type="Texture2D" uid="uid://dpfxh5moro6cn" path="res://assets/sprites/player/RUN/East/Sprite Sheet16.png" id="9_dmhin"]
 [ext_resource type="Texture2D" uid="uid://cxhef362d1xcq" path="res://assets/sprites/player/ATTACK/South/Sprite Sheet1.png" id="10_1npb8"]
 [ext_resource type="Texture2D" uid="uid://cxbep5nvv7qw7" path="res://assets/sprites/player/ATTACK/South/Sprite Sheet2.png" id="11_r5u3d"]
@@ -141,6 +149,41 @@
 [ext_resource type="AudioStream" uid="uid://dneq5st68jsp1" path="res://assets/sfx/07_human_atk_sword_1.wav" id="107_5ugss"]
 [ext_resource type="AudioStream" uid="uid://bsnb2otm48bgb" path="res://assets/sfx/07_human_atk_sword_2.wav" id="108_e53uo"]
 [ext_resource type="AudioStream" uid="uid://doshlrp231pod" path="res://assets/sfx/07_human_atk_sword_3.wav" id="109_4sis6"]
+[ext_resource type="FontFile" uid="uid://bxe3w4luhe7go" path="res://assets/ui/monogram-extended.ttf" id="150_m781u"]
+[ext_resource type="Texture2D" uid="uid://qqvgrs4ii2aj" path="res://assets/ui/Healthbar (3).png" id="152_1l7vg"]
+[ext_resource type="Texture2D" uid="uid://dbtj6c0icavkk" path="res://assets/ui/Healthbar (1).png" id="152_gy40c"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0w2r8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_861ea")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_bh5bx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_xo62r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_o0y04")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_krobi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_xl4q2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_hrdui")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_35vt8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_lctca"]
 animations = [{
@@ -663,17 +706,27 @@ radius = 10.0027
 height = 25.0722
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vr8jc"]
-radius = 8.92859
-height = 25.0
+radius = 10.7143
+height = 28.5715
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w3ubh"]
-radius = 4.0
-height = 12.0
+radius = 6.0
+height = 16.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_fcsx7"]
+resource_local_to_scene = true
+font = ExtResource("150_m781u")
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 37
 script = ExtResource("1_xgk0h")
+
+[node name="HaloAnim" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 6)
+sprite_frames = SubResource("SpriteFrames_0w2r8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -1)
@@ -694,6 +747,7 @@ collision_layer = 12
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WeaponPivot/AttackArea"]
+visible = false
 position = Vector2(13, 0)
 rotation = 1.29851
 shape = SubResource("CapsuleShape2D_8i6yv")
@@ -706,12 +760,14 @@ collision_layer = 2
 collision_mask = 32
 
 [node name="Hurtbox" type="CollisionShape2D" parent="Area2D"]
+visible = false
 position = Vector2(0, -1)
 scale = Vector2(0.559999, 0.559999)
 shape = SubResource("CapsuleShape2D_vr8jc")
 debug_color = Color(0, 0.647059, 0.247059, 0.419608)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, -1)
 shape = SubResource("CapsuleShape2D_w3ubh")
 debug_color = Color(0.904724, 0.305332, 0, 0.42)
@@ -737,5 +793,40 @@ one_shot = true
 
 [node name="AttackTimer" type="Timer" parent="Timers"]
 
+[node name="AbilityTimer" type="Timer" parent="Timers"]
+one_shot = true
+
+[node name="CooldownTimer" type="Timer" parent="Timers"]
+one_shot = true
+
+[node name="Ability" type="Label" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -21.0
+offset_top = 9.0
+offset_right = 63.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+text = "ABILITY READY!"
+label_settings = SubResource("LabelSettings_fcsx7")
+
+[node name="HealthBar" type="TextureProgressBar" parent="."]
+offset_left = -12.0
+offset_top = -19.0
+offset_right = 28.0
+offset_bottom = 21.0
+max_value = 200.0
+value = 200.0
+texture_under = ExtResource("152_1l7vg")
+texture_progress = ExtResource("152_gy40c")
+
 [connection signal="timeout" from="Timers/AnimTimer" to="." method="_on_anim_timer_timeout"]
 [connection signal="timeout" from="Timers/AttackTimer" to="." method="_on_atktimer_timeout"]
+[connection signal="timeout" from="Timers/AbilityTimer" to="." method="_on_ability_timer_timeout"]
+[connection signal="timeout" from="Timers/CooldownTimer" to="." method="_on_cooldown_timer_timeout"]

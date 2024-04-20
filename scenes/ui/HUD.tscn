@@ -1,53 +1,119 @@
-[gd_scene load_steps=7 format=3 uid="uid://dox3bykvmy3xv"]
+[gd_scene load_steps=9 format=3 uid="uid://dox3bykvmy3xv"]
 
-[ext_resource type="Texture2D" uid="uid://d4era6v033c23" path="res://assets/icons/Chicken_of_the_Wood.png" id="1_gwajb"]
 [ext_resource type="FontFile" uid="uid://bxe3w4luhe7go" path="res://assets/ui/monogram-extended.ttf" id="1_vfp3r"]
+[ext_resource type="Texture2D" uid="uid://boc3ygkxg37r0" path="res://assets/icons/Honey_Fungus.png" id="2_odjg6"]
 [ext_resource type="LabelSettings" uid="uid://c5y5na1u3i3et" path="res://scenes/ui_font.tres" id="3_jtkf0"]
-[ext_resource type="Texture2D" uid="uid://dwmyyk77qyur1" path="res://assets/ui/heart.png" id="4_dc235"]
+[ext_resource type="Texture2D" uid="uid://cwy8ova7w4kcw" path="res://assets/ui/heart_orange.png" id="4_2dp0l"]
 [ext_resource type="Texture2D" uid="uid://b35wvbp6r3tw3" path="res://assets/icons/16x16 Icons (19).png" id="5_1yjqo"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_pce55"]
+[sub_resource type="LabelSettings" id="LabelSettings_gqwud"]
 resource_local_to_scene = true
 font = ExtResource("1_vfp3r")
 outline_size = 4
 outline_color = Color(0, 0, 0, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_ymmn6"]
+resource_local_to_scene = true
+font = ExtResource("1_vfp3r")
+font_size = 32
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_d4wfs"]
+resource_local_to_scene = true
+font = ExtResource("1_vfp3r")
+font_size = 32
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
 [node name="CanvasLayer" type="CanvasLayer"]
 
-[node name="Panel" type="Panel" parent="."]
+[node name="HUDPanel" type="Panel" parent="."]
+visible = false
 layout_direction = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -387.0
-offset_top = 32.0
+offset_top = 8.0
 offset_right = 387.0
-offset_bottom = 56.0
+offset_bottom = 63.0
 grow_horizontal = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="Label" type="Label" parent="Panel"]
-layout_mode = 0
-offset_left = 19.0
-offset_top = 16.0
-offset_right = 59.0
-offset_bottom = 39.0
+[node name="HeartContainer" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -48.0
+offset_top = 448.0
+offset_right = -48.0
+offset_bottom = 448.0
+grow_horizontal = 2
+scale = Vector2(4, 4)
+
+[node name="Heart0" type="Sprite2D" parent="HeartContainer"]
+texture = ExtResource("4_2dp0l")
+hframes = 3
+
+[node name="Heart1" type="Sprite2D" parent="HeartContainer"]
+position = Vector2(8, 0)
+texture = ExtResource("4_2dp0l")
+hframes = 3
+
+[node name="Heart2" type="Sprite2D" parent="HeartContainer"]
+position = Vector2(16, 0)
+texture = ExtResource("4_2dp0l")
+hframes = 3
+
+[node name="Heart3" type="Sprite2D" parent="HeartContainer"]
+position = Vector2(23.75, 0)
+texture = ExtResource("4_2dp0l")
+hframes = 3
+
+[node name="HUDPanel2" type="Panel" parent="."]
+layout_direction = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -160.0
+offset_top = 497.0
+offset_right = 160.0
+offset_bottom = 520.0
+grow_horizontal = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = 336.0
+offset_top = 505.0
+offset_right = 376.0
+offset_bottom = 528.0
+theme_override_font_sizes/font_size = 4
 text = "RELIC"
-label_settings = SubResource("LabelSettings_pce55")
+label_settings = SubResource("LabelSettings_gqwud")
+
+[node name="RelicSprite" type="Sprite2D" parent="."]
+position = Vector2(352, 496)
+scale = Vector2(2, 2)
+texture = ExtResource("5_1yjqo")
 
 [node name="MushCoins" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 232.0
-offset_top = -592.0
-offset_right = 232.0
-offset_bottom = -592.0
+offset_left = 552.0
+offset_top = -128.0
+offset_right = 552.0
+offset_bottom = -128.0
 scale = Vector2(3, 3)
 
 [node name="MushCoin" type="Sprite2D" parent="MushCoins"]
 position = Vector2(8.25, 208.25)
-texture = ExtResource("1_gwajb")
+texture = ExtResource("2_odjg6")
 
 [node name="CoinCount" type="Label" parent="MushCoins"]
 layout_mode = 0
@@ -60,47 +126,51 @@ text = "0"
 label_settings = ExtResource("3_jtkf0")
 metadata/_edit_use_anchors_ = true
 
-[node name="HeartContainer" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -16.0
-offset_top = 32.0
-offset_right = -16.0
-offset_bottom = 32.0
-grow_horizontal = 2
-scale = Vector2(4, 4)
-
-[node name="Heart0" type="Sprite2D" parent="HeartContainer"]
-texture = ExtResource("4_dc235")
-hframes = 3
-
-[node name="Heart1" type="Sprite2D" parent="HeartContainer"]
-position = Vector2(8, 0)
-texture = ExtResource("4_dc235")
-hframes = 3
-
-[node name="Heart2" type="Sprite2D" parent="HeartContainer"]
-position = Vector2(16, 0)
-texture = ExtResource("4_dc235")
-hframes = 3
-
-[node name="Heart3" type="Sprite2D" parent="HeartContainer"]
-position = Vector2(23.75, 0)
-texture = ExtResource("4_dc235")
-hframes = 3
-
 [node name="WaveCounter" type="Label" parent="."]
-offset_left = 672.0
+offset_left = 40.0
 offset_top = 16.0
-offset_right = 712.0
-offset_bottom = 39.0
+offset_right = 112.0
+offset_bottom = 42.0
 scale = Vector2(2, 2)
 text = "WAVE 0"
+label_settings = SubResource("LabelSettings_ymmn6")
+
+[node name="Stats" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 40.0
+offset_top = 72.0
+offset_right = 80.0
+offset_bottom = 112.0
+scale = Vector2(2, 2)
+
+[node name="Attack" type="Label" parent="Stats"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "ATTACK"
 label_settings = ExtResource("3_jtkf0")
 
-[node name="RelicSprite" type="Sprite2D" parent="."]
-position = Vector2(128, 31)
-scale = Vector2(2, 2)
-texture = ExtResource("5_1yjqo")
+[node name="Speed" type="Label" parent="Stats"]
+layout_mode = 0
+offset_top = 16.0
+offset_right = 40.0
+offset_bottom = 39.0
+text = " SPEED"
+label_settings = ExtResource("3_jtkf0")
+
+[node name="Ability" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -96.0
+offset_top = 210.0
+offset_right = 72.0
+offset_bottom = 236.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "RELIC CHARGED!"
+label_settings = SubResource("LabelSettings_d4wfs")
+horizontal_alignment = 1

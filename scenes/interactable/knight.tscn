@@ -29,7 +29,7 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ebc16"]
 radius = 8.0
-height = 20.0
+height = 22.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_rejwr"]
 animations = [{
@@ -128,7 +128,7 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bmyw8"]
 radius = 8.92859
-height = 28.5715
+height = 32.1429
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_28qej"]
 radius = 4.12311

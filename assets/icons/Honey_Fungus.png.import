@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cs0es2yjn2ku1"
-path="res://.godot/imported/Halo Anim 1.png-751aef162509d5fb15316626dc44ed65.ctex"
+uid="uid://boc3ygkxg37r0"
+path="res://.godot/imported/Honey_Fungus.png-6a12b0ef0363e66e7e7d6664279578d0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/icons/Halo Anim 1.png"
-dest_files=["res://.godot/imported/Halo Anim 1.png-751aef162509d5fb15316626dc44ed65.ctex"]
+source_file="res://assets/icons/Honey_Fungus.png"
+dest_files=["res://.godot/imported/Honey_Fungus.png-6a12b0ef0363e66e7e7d6664279578d0.ctex"]
 
 [params]
 

@@ -17,7 +17,7 @@ var is_in_range : bool
 var player_in_range : bool
 var entered : bool
 var alive : bool
-var speed := 20
+var speed := 40
 var dir : Vector2
 
 var health := 100
@@ -84,7 +84,9 @@ func play_hit_animation():
 func die():
 	main.mobs_killed += 1
 	# TODO: death_anim()
-	spawn_loot()
+	var i = randi_range(0, 99)
+	if i >= 14:
+		spawn_loot()
 	queue_free()
 
 

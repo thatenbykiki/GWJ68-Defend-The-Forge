@@ -12,9 +12,9 @@
 			"title": "Todo",
 			"tasks": [
 				"2d9d6579-1522-4804-b1c7-0d8d34618faa",
-				"f52ab3eb-5904-47fe-8bba-5dc33310dfba",
 				"ff73d48d-0db0-4519-9699-c0bdaa907d93",
-				"0baa85b8-abf2-4654-8a7a-88e0d4de2019"
+				"0baa85b8-abf2-4654-8a7a-88e0d4de2019",
+				"d1191731-e601-4e5b-8eae-f01247d81dd0"
 			]
 		},
 		{
@@ -29,7 +29,10 @@
 			"title": "Done",
 			"tasks": [
 				"4e0a85f7-d9f0-4ab9-8476-a4c91c642b01",
+				"bf4a19fe-5985-4180-8c7f-f39243fe626a",
+				"f756c219-e549-4d50-8a43-75d0a36e95c0",
 				"546b3733-6519-413d-9844-cfec2d1ad9ad",
+				"f52ab3eb-5904-47fe-8bba-5dc33310dfba",
 				"a310371b-8aa4-4aa3-bc48-24fbfdf1af5d",
 				"e0dc153e-a35b-4abd-a36b-756b38d9717f",
 				"dd4470c2-9723-47d5-89d9-79a8f1e29323",
@@ -176,7 +179,7 @@
 				},
 				{
 					"details": "Mobs randomly target player or wall",
-					"done": false
+					"done": true
 				},
 				{
 					"details": "Win Condition after X Rounds (offer Endless mode)",
@@ -188,7 +191,7 @@
 				},
 				{
 					"details": "Implement Relics",
-					"done": false
+					"done": true
 				}
 			]
 		},
@@ -223,6 +226,27 @@
 		{
 			"uuid": "0baa85b8-abf2-4654-8a7a-88e0d4de2019",
 			"title": "QOL : Wait time between last mob killed and wave clear screen",
+			"description": "",
+			"category": "a15610a5-ce84-436d-9433-2f52b5c09443",
+			"steps": []
+		},
+		{
+			"uuid": "d1191731-e601-4e5b-8eae-f01247d81dd0",
+			"title": "JUICE : Animate lava tiles",
+			"description": "",
+			"category": "a15610a5-ce84-436d-9433-2f52b5c09443",
+			"steps": []
+		},
+		{
+			"uuid": "f756c219-e549-4d50-8a43-75d0a36e95c0",
+			"title": "Player Health/Hit Update",
+			"description": "",
+			"category": "a15610a5-ce84-436d-9433-2f52b5c09443",
+			"steps": []
+		},
+		{
+			"uuid": "bf4a19fe-5985-4180-8c7f-f39243fe626a",
+			"title": "Update controls with Relic button",
 			"description": "",
 			"category": "a15610a5-ce84-436d-9433-2f52b5c09443",
 			"steps": []

@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://b5ggnbdtj3hdg"]
+[gd_scene load_steps=65 format=3 uid="uid://b5ggnbdtj3hdg"]
 
 [ext_resource type="StyleBox" uid="uid://c2acqgbbgdxop" path="res://scenes/game_over_stylebox.tres" id="1_il3la"]
 [ext_resource type="FontFile" uid="uid://bxe3w4luhe7go" path="res://assets/ui/monogram-extended.ttf" id="2_gie0u"]
@@ -24,8 +24,11 @@
 [ext_resource type="Texture2D" uid="uid://c44n2foc5jctq" path="res://assets/ui/Animations/RT_Press/Layer 2.png" id="22_h86a3"]
 [ext_resource type="Texture2D" uid="uid://cpclpfa3dkryr" path="res://assets/ui/Animations/RT_Press/Layer 3.png" id="23_k0d2e"]
 [ext_resource type="Texture2D" uid="uid://woameeombgjp" path="res://assets/ui/Animations/RT_Press/Layer 4.png" id="24_6k6vb"]
+[ext_resource type="Texture2D" uid="uid://buwwte25s5wm2" path="res://assets/ui/Animations/LB_Press/LB_PressLayer 1.png" id="25_g0lr0"]
 [ext_resource type="Texture2D" uid="uid://bvdrdnorug1db" path="res://assets/ui/Animations/RightStickMovement/Layer 1.png" id="25_yhubx"]
+[ext_resource type="Texture2D" uid="uid://yya05qpywtwe" path="res://assets/ui/Animations/LB_Press/LB_PressLayer 2.png" id="26_1u5h6"]
 [ext_resource type="Texture2D" uid="uid://qq28ags5acon" path="res://assets/ui/Animations/RightStickMovement/Layer 2.png" id="26_iinx4"]
+[ext_resource type="Texture2D" uid="uid://ciqrk5iqqj7i6" path="res://assets/ui/Animations/LB_Press/LB_PressLayer 3.png" id="27_323am"]
 [ext_resource type="Texture2D" uid="uid://ui3m1rbjvo86" path="res://assets/ui/Animations/RightStickMovement/Layer 3.png" id="27_uv3wq"]
 [ext_resource type="Texture2D" uid="uid://djh5ifekotcxe" path="res://assets/ui/Animations/RightStickMovement/Layer 4.png" id="28_55iyp"]
 [ext_resource type="Texture2D" uid="uid://dued47r101ycw" path="res://assets/ui/Animations/RightStickMovement/Layer 5.png" id="29_x3bm8"]
@@ -172,6 +175,26 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("20_wqj58")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fqc5i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("25_g0lr0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_1u5h6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_323am")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_1u5h6")
 }],
 "loop": true,
 "name": &"default",
@@ -413,6 +436,12 @@ sprite_frames = SubResource("SpriteFrames_d405l")
 autoplay = "default"
 flip_h = true
 
+[node name="LBSprite" type="AnimatedSprite2D" parent="Panel/Controls/Relic"]
+position = Vector2(32, 87)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_fqc5i")
+autoplay = "default"
+
 [node name="Aim" type="Label" parent="Panel/Controls"]
 layout_mode = 1
 anchors_preset = 8
@@ -481,8 +510,7 @@ offset_right = 70.0
 offset_bottom = 217.5
 grow_horizontal = 0
 grow_vertical = 2
-text = "PAUSE
-"
+text = "INFO"
 label_settings = SubResource("LabelSettings_abdjl")
 
 [node name="ESCSprite" type="AnimatedSprite2D" parent="Panel/Controls/Pause"]
