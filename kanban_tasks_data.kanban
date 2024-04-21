@@ -14,21 +14,30 @@
 				"2d9d6579-1522-4804-b1c7-0d8d34618faa",
 				"ff73d48d-0db0-4519-9699-c0bdaa907d93",
 				"0baa85b8-abf2-4654-8a7a-88e0d4de2019",
-				"d1191731-e601-4e5b-8eae-f01247d81dd0"
+				"d1191731-e601-4e5b-8eae-f01247d81dd0",
+				"c4eae915-2a84-44f7-a32b-1f5299bff772",
+				"246d7855-081a-4621-b663-d491aba6e98c"
 			]
 		},
 		{
 			"uuid": "1034fdc5-7e37-44a0-88d9-1218616fa7a0",
 			"title": "Doing",
 			"tasks": [
-				"46ed0ac9-e01c-4ad1-ab7d-c9c70b40490b"
+				"aa15bf35-8388-40bc-b158-9af91d9c00f2",
+				"f6f67a86-d292-4ba1-965f-bead4ac3f629"
 			]
 		},
 		{
 			"uuid": "10be5e17-dffc-45e3-9565-b479206f3338",
 			"title": "Done",
 			"tasks": [
+				"90ed43a9-838e-499b-b571-bbe6fd074259",
+				"2a6cf1dd-6610-4990-bddb-7ab156471eec",
+				"112c8cf5-a2ab-4b52-bf66-9fd40fcb5df4",
+				"23802f85-7415-4dc4-9caf-0084596e9838",
+				"46ed0ac9-e01c-4ad1-ab7d-c9c70b40490b",
 				"4e0a85f7-d9f0-4ab9-8476-a4c91c642b01",
+				"9058350d-fd4e-49f4-b65c-75c2eab7f706",
 				"bf4a19fe-5985-4180-8c7f-f39243fe626a",
 				"f756c219-e549-4d50-8a43-75d0a36e95c0",
 				"546b3733-6519-413d-9844-cfec2d1ad9ad",
@@ -171,11 +180,11 @@
 			"steps": [
 				{
 					"details": "Breakable Walls",
-					"done": false
+					"done": true
 				},
 				{
 					"details": "Second Mob",
-					"done": false
+					"done": true
 				},
 				{
 					"details": "Mobs randomly target player or wall",
@@ -187,7 +196,7 @@
 				},
 				{
 					"details": "Boss Enemy",
-					"done": false
+					"done": true
 				},
 				{
 					"details": "Implement Relics",
@@ -250,6 +259,95 @@
 			"description": "",
 			"category": "a15610a5-ce84-436d-9433-2f52b5c09443",
 			"steps": []
+		},
+		{
+			"uuid": "9058350d-fd4e-49f4-b65c-75c2eab7f706",
+			"title": "JUICE : Add shadows to mobs and player",
+			"description": "",
+			"category": "a15610a5-ce84-436d-9433-2f52b5c09443",
+			"steps": []
+		},
+		{
+			"uuid": "c4eae915-2a84-44f7-a32b-1f5299bff772",
+			"title": "Make Boss Arena Bigger!",
+			"description": "",
+			"category": "a15610a5-ce84-436d-9433-2f52b5c09443",
+			"steps": []
+		},
+		{
+			"uuid": "246d7855-081a-4621-b663-d491aba6e98c",
+			"title": "BOSS BATTLE!",
+			"description": "",
+			"category": "a15610a5-ce84-436d-9433-2f52b5c09443",
+			"steps": [
+				{
+					"details": "Melee State",
+					"done": true
+				},
+				{
+					"details": "Laser Beam",
+					"done": false
+				},
+				{
+					"details": "Shield Break",
+					"done": false
+				}
+			]
+		},
+		{
+			"uuid": "2a6cf1dd-6610-4990-bddb-7ab156471eec",
+			"title": "FIX GAME_OVER SECTION",
+			"description": "Reset mob spawner and wall",
+			"category": "a15610a5-ce84-436d-9433-2f52b5c09443",
+			"steps": []
+		},
+		{
+			"uuid": "90ed43a9-838e-499b-b571-bbe6fd074259",
+			"title": "MUSIC",
+			"description": "",
+			"category": "a15610a5-ce84-436d-9433-2f52b5c09443",
+			"steps": []
+		},
+		{
+			"uuid": "23802f85-7415-4dc4-9caf-0084596e9838",
+			"title": "Update ability font and vfx",
+			"description": "",
+			"category": "a15610a5-ce84-436d-9433-2f52b5c09443",
+			"steps": []
+		},
+		{
+			"uuid": "112c8cf5-a2ab-4b52-bf66-9fd40fcb5df4",
+			"title": "Telegraph player hits/health better",
+			"description": "",
+			"category": "a15610a5-ce84-436d-9433-2f52b5c09443",
+			"steps": []
+		},
+		{
+			"uuid": "aa15bf35-8388-40bc-b158-9af91d9c00f2",
+			"title": "Fix HUD",
+			"description": "",
+			"category": "a15610a5-ce84-436d-9433-2f52b5c09443",
+			"steps": []
+		},
+		{
+			"uuid": "f6f67a86-d292-4ba1-965f-bead4ac3f629",
+			"title": "Make UI cohesive",
+			"description": "",
+			"category": "a15610a5-ce84-436d-9433-2f52b5c09443",
+			"steps": [
+				{
+					"details": "button styles",
+					"done": false
+				},
+				{
+					"details": "focus vs pressed",
+					"done": false
+				},
+				{
+					"details": "same color for all panels",
+					"done": false
+				}
+			]
 		}
 	],
 	"layout": {

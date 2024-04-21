@@ -1,31 +1,39 @@
 extends CharacterBody2D
 
 @onready var player = get_node("/root/Main/Player")
+@onready var main = get_node("/root/Main")
 @onready var healthbar = $HealthBar
 
 var health := 100
 var is_in_range : bool
-
 var armor_rate := 22
 
-# ROUND BASED HEALTH?
+const BASE_HEALTH = 100.0
+
+signal wall_destroyed
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	player.swing_sword.connect(_check_hit)
+	health = BASE_HEALTH
 	healthbar.value = health
+	$Hurtbox/CollisionShape2D.disabled = false
+	show()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+
 func _process(_delta):
 	#print("range: " + str(is_in_range))
+	_update_healthbar()
+	
 	if health <= 0:
-		pass
-		#die()
-			#removes collision
-			#hides self
-			#send signal to main
+		wall_destroyed.emit()
+		die()
 
+
+func die():
+	main.gate_dead = true
+	$CollisionShape2D2.set_deferred("disabled", true)
+	hide()
 
 func _check_hit():
 	if is_in_range:

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bnt8g4m6nonrd"]
+
+[ext_resource type="PackedScene" uid="uid://cy8n73o2n832k" path="res://scenes/world/world.tscn" id="1_4nf8t"]
+[ext_resource type="PackedScene" uid="uid://bkfxdwbob27p6" path="res://forge_golem.tscn" id="3_st644"]
+
+[node name="Playground" type="Node2D"]
+
+[node name="World" parent="." instance=ExtResource("1_4nf8t")]
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("3_st644")]
+position = Vector2(129, 75)

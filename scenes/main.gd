@@ -23,11 +23,20 @@ var sword_icon = preload("res://assets/icons/Sword_Icon.png")
 var shield_icon = preload("res://assets/icons/Shield_Icon.png")
 var boots_icon = preload("res://assets/icons/Boots_Icon.png")
 
+var wall_scene = preload("res://scenes/world/area_wall.tscn")
+var boss_scene = preload("res://forge_golem.tscn")
+
+var gate_scene = preload("res://forge_wall.tscn")
+@onready var gate = gate_scene.instantiate()
+
 var music_on : bool
+var gate_dead : bool
 
 var mob_dmg_rate := 20.0
 var max_mobs : int
 var mobs_killed := 0
+
+var player_lowhealth : bool
 var coins : int
 var wave : int
 var chosen_relic : int # 0: Obelisk, 1: Zweihander, 2: Lava Boots
@@ -45,15 +54,24 @@ func _ready():
 	$PauseScreen/Panel/BGMToggle.toggled.connect(toggle_bgm)
 	$PauseScreen/Panel/Resume.pressed.connect(resume_game)
 	$Controls/Panel/Button.pressed.connect(game_start)
-	
+	#$TheWall.wall_destroyed.connect(stop_waves)
+	$BGM.stream = preload("res://assets/bgm/Up-from-the-Ashes.ogg")
 	$BGM.playing = true
 	music_on = true
+	spawn_gate()
 	player.reset()	
 	show_start_menu()
 
 func _process(_delta):
 	update_ui()
 	loop_bgm()
+	
+	if gate_dead:
+		stop_waves()
+	
+	if player_lowhealth && !$SFX_Denied.playing:
+		$SFX_Denied.play()
+	
 	if is_wave_completed():
 		get_tree().paused = true
 		wave += 1
@@ -113,11 +131,17 @@ func new_game():
 	wave = 1
 	max_mobs = 3
 	mobs_killed = 0
+	if !gate_dead:
+		gate.health = gate.BASE_HEALTH
+	else:
+		spawn_gate()
+	
 	player.reset()
 	reset()
 
 
 func reset():
+	$MobSpawner/Timer.set_autostart(true)
 	mobMgr.mobs_spawned = 0
 	chosen_upgrade = 3
 	$UpgradeOptions.hide()
@@ -126,21 +150,29 @@ func reset():
 	if !relic_selected:
 		relic_select()
 
+func spawn_gate():
+	gate_dead = false
+	gate.position = Vector2(480, 152)
+	add_child(gate)
 
 func next_wave_start():
 	if chosen_upgrade == 3:
 		$SFX_Denied.play()
 	elif chosen_upgrade == 0:
-		player.dmg_rate *= 1.15
+		player.dmg_rate += (player.BASE_DAMAGE * .2)
 		$UpgradeOptions.hide()
 		$WaveOverTimer.start()
 	else:
-		player.speed *= 1.15
+		player.speed += (player.BASE_SPEED * .2)
 		$UpgradeOptions.hide()
 		$WaveOverTimer.start()
 	print("dmg: " + str(player.dmg_rate))
 	print("spd: " + str(player.speed))
 
+
+func stop_waves():
+	$MobSpawner/Timer.set_autostart(false)
+	$MobSpawner/Timer.stop()
 
 
 func relic_select():
@@ -205,11 +237,27 @@ func is_wave_completed():
 		return false
 
 
+func _boss_cutscene():
+	#print("cutscene triggered")
+	#set_process_input(false)
+	#var boss = boss_scene.instantiate()
+	#boss.position = Vector2(480, -170)
+	#player.direction.move_toward(480, -90)
+	## move player up to boss range
+	## "lock" the doors
+	## begin the battle
+	#set_process_input(true)
+	#add_child(boss)
+	#$BossCutscene/CollisionShape2D.process_mode = Node.PROCESS_MODE_DISABLED
+	#print("THE BOSS AWAITS")
+	pass
+
 func game_over():
 	#SFX_GAMEOVER
 	get_tree().call_group("mobs", "queue_free")
 	get_tree().call_group("items", "queue_free")
 	$GameOver/WavesLabel.text = "WAVES SURVIVED: " + str(wave - 1)
+	$BGM.stream = "res://assets/bgm/Up-from-the-Ashes.ogg"
 	get_tree().paused = true
 	$GameOver.show()
 	$GameOver/Button.grab_focus()
@@ -306,8 +354,16 @@ func _change_heart_frames():
 
 func update_health():
 	playerHealthbar.value = player.health
+	
 	if player.health <= 0:
 		game_over()
+	
+	if player.health <= 45:
+		player_lowhealth = true
+		playerHealthbar.texture_under = preload("res://assets/ui/healthbar_lowhealth.png")
+	else:
+		player_lowhealth = false
+		playerHealthbar.texture_under = preload("res://assets/ui/Healthbar (3).png")
 
 
 func _on_mob_spawner_hit_p():
@@ -325,3 +381,29 @@ func _on_wave_over_timer_timeout():
 
 func _on_game_reset_timer_timeout():
 	new_game()
+
+
+func _on_boss_cutscene_area_entered(area):
+	if area.is_in_group("player"):
+		print("cutscene triggered")
+		$BGM.playing = false
+		set_process_input(false)
+		var wall = wall_scene.instantiate()
+		# move player up to boss range
+		player.position = Vector2(480, -90)
+		# "lock" the doors
+		wall.position = Vector2(480, -42)
+		add_child(wall)
+		# begin the battle
+		set_process_input(true)
+		$BossCutscene/SpawnTimer.start()
+
+
+func _on_spawn_timer_timeout():
+	$BGM.playing = false
+	$BGM.stream = preload("res://assets/bgm/Shadows-of-the-Abyss.ogg")
+	$BGM.playing = true
+	var boss = boss_scene.instantiate()
+	boss.position = Vector2(480, -170)
+	add_child(boss)
+	boss.add_to_group("mobs")

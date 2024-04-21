@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://smt7dfullky1"]
+[gd_scene load_steps=8 format=3 uid="uid://smt7dfullky1"]
 
 [ext_resource type="Script" path="res://scenes/interactable/item.gd" id="1_pavnt"]
 [ext_resource type="Texture2D" uid="uid://boc3ygkxg37r0" path="res://assets/icons/Honey_Fungus.png" id="2_lkeol"]
 [ext_resource type="AudioStream" uid="uid://c7b6fittdynwh" path="res://assets/sfx/051_use_item_01.wav" id="3_b381m"]
+[ext_resource type="Texture2D" uid="uid://digomjgvx6sby" path="res://assets/sprites/Shadow.png" id="4_1px6e"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ex52p"]
 radius = 44.0114
@@ -16,6 +17,10 @@ radius = 7.0
 collision_layer = 32
 collision_mask = 0
 script = ExtResource("1_pavnt")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+position = Vector2(0, 10)
+texture = ExtResource("4_1px6e")
 
 [node name="MagnetArea" type="Area2D" parent="."]
 collision_layer = 32

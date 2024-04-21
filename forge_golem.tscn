@@ -1,0 +1,289 @@
+[gd_scene load_steps=49 format=3 uid="uid://bkfxdwbob27p6"]
+
+[ext_resource type="Texture2D" uid="uid://card1dj1jjr34" path="res://assets/sprites/golem/GLOW/GLOW (1).png" id="1_3w03j"]
+[ext_resource type="Script" path="res://forge_golem.gd" id="1_nu5x0"]
+[ext_resource type="Texture2D" uid="uid://4vo08sugsv27" path="res://assets/sprites/golem/GLOW/GLOW (2).png" id="2_mu3yv"]
+[ext_resource type="Texture2D" uid="uid://dhfr3tbs7ratl" path="res://assets/sprites/golem/GLOW/GLOW (3).png" id="3_qgg55"]
+[ext_resource type="Texture2D" uid="uid://ng34i3dqsygh" path="res://assets/sprites/golem/GLOW/GLOW (4).png" id="4_72px7"]
+[ext_resource type="Texture2D" uid="uid://csuuhf3fp7uyh" path="res://assets/sprites/golem/GLOW/GLOW (5).png" id="5_x6cxd"]
+[ext_resource type="Texture2D" uid="uid://dhofwq5ijw05q" path="res://assets/sprites/golem/GLOW/GLOW (6).png" id="6_t0lkk"]
+[ext_resource type="Texture2D" uid="uid://bbmhb1rutr48q" path="res://assets/sprites/golem/GLOW/GLOW (7).png" id="7_ouhac"]
+[ext_resource type="Texture2D" uid="uid://b4n6a0ok7lo7x" path="res://assets/sprites/golem/GLOW/GLOW (8).png" id="8_3magh"]
+[ext_resource type="Texture2D" uid="uid://cxtt5pw466be3" path="res://assets/sprites/golem/IDLE/IDLE (1).png" id="9_qnlbq"]
+[ext_resource type="Texture2D" uid="uid://chwgxbrejmsjg" path="res://assets/sprites/golem/IDLE/IDLE (2).png" id="10_vxx2e"]
+[ext_resource type="Texture2D" uid="uid://r6crjqx7lbjf" path="res://assets/sprites/golem/IDLE/IDLE (3).png" id="11_x8gj5"]
+[ext_resource type="Texture2D" uid="uid://cgu3ceh54a3hy" path="res://assets/sprites/golem/IDLE/IDLE (4).png" id="12_6toep"]
+[ext_resource type="Script" path="res://scripts/finite_state_machine.gd" id="13_kbodl"]
+[ext_resource type="Texture2D" uid="uid://nsm4ejqyb1hh" path="res://assets/sprites/golem/MELEE/MELEE (1).png" id="14_c5m8p"]
+[ext_resource type="Script" path="res://scripts/enemy_chase_state.gd" id="14_f7mcm"]
+[ext_resource type="Texture2D" uid="uid://dgp4yy5eyr25p" path="res://assets/sprites/golem/MELEE/MELEE (2).png" id="15_20hxr"]
+[ext_resource type="Texture2D" uid="uid://b62myluc7mtx3" path="res://assets/sprites/golem/MELEE/MELEE (3).png" id="16_16k24"]
+[ext_resource type="Script" path="res://scripts/enemy_wander_state.gd" id="16_622sm"]
+[ext_resource type="Texture2D" uid="uid://ck2unvb21b1k2" path="res://assets/sprites/golem/MELEE/MELEE (4).png" id="17_girfw"]
+[ext_resource type="Texture2D" uid="uid://5pjtifei67kq" path="res://assets/sprites/golem/IMMUNE/IMMUNE (1).png" id="18_3jurq"]
+[ext_resource type="Texture2D" uid="uid://eu0su001wmpq" path="res://assets/sprites/golem/MELEE/MELEE (5).png" id="18_tn2vx"]
+[ext_resource type="Texture2D" uid="uid://cqbo8i0bmglnp" path="res://assets/sprites/golem/IMMUNE/IMMUNE (2).png" id="19_8gi8y"]
+[ext_resource type="Texture2D" uid="uid://nlunpvmy7usu" path="res://assets/sprites/golem/MELEE/MELEE (6).png" id="19_qlarp"]
+[ext_resource type="Texture2D" uid="uid://jdfu53bxppn3" path="res://assets/sprites/golem/IMMUNE/IMMUNE (3).png" id="20_7ikp2"]
+[ext_resource type="Texture2D" uid="uid://db6uqaiwygkrl" path="res://assets/sprites/golem/MELEE/MELEE (7).png" id="20_el3tw"]
+[ext_resource type="Texture2D" uid="uid://dswu5dfu2owxh" path="res://assets/sprites/golem/IMMUNE/IMMUNE (4).png" id="21_ltfu3"]
+[ext_resource type="Texture2D" uid="uid://cyn0uvem3ou3u" path="res://assets/sprites/golem/IMMUNE/IMMUNE (5).png" id="22_v75pw"]
+[ext_resource type="Texture2D" uid="uid://b3rjoyl8nkgf4" path="res://assets/sprites/golem/IMMUNE/IMMUNE (6).png" id="23_hkhcn"]
+[ext_resource type="Texture2D" uid="uid://llbiug4fp873" path="res://assets/sprites/golem/IMMUNE/IMMUNE (7).png" id="24_3l6lf"]
+[ext_resource type="Script" path="res://scripts/enemy_melee_state.gd" id="24_fh47i"]
+[ext_resource type="Texture2D" uid="uid://djgc71sotohce" path="res://assets/sprites/wall/wall_healthbar-Layer 1.png" id="25_2s8gf"]
+[ext_resource type="Texture2D" uid="uid://ca2uaf0f0ewy4" path="res://assets/sprites/golem/IMMUNE/IMMUNE (8).png" id="25_yl275"]
+[ext_resource type="Texture2D" uid="uid://cey57qbpexwo0" path="res://assets/sprites/wall/wall_healthbar-Layer 2.png" id="26_fsafs"]
+[ext_resource type="Texture2D" uid="uid://bdkdebg1si653" path="res://assets/sprites/golem/SHIELD/SHIELD (1).png" id="33_38jxw"]
+[ext_resource type="Texture2D" uid="uid://ctalb24e3obej" path="res://assets/sprites/golem/SHIELD/SHIELD (2).png" id="34_r636p"]
+[ext_resource type="Texture2D" uid="uid://dafi5cwkhdar2" path="res://assets/sprites/golem/SHIELD/SHIELD (3).png" id="35_dgy4u"]
+[ext_resource type="Texture2D" uid="uid://dic7rfo25xtjj" path="res://assets/sprites/golem/SHIELD/SHIELD (4).png" id="36_y2302"]
+[ext_resource type="Texture2D" uid="uid://cyg0ck7gcogd4" path="res://assets/sprites/golem/SHIELD/SHIELD (5).png" id="37_4wc6p"]
+[ext_resource type="Texture2D" uid="uid://dvfbna3elmlmt" path="res://assets/sprites/golem/SHIELD/SHIELD (6).png" id="38_0mftk"]
+[ext_resource type="Texture2D" uid="uid://dbgbvmqeg5lb6" path="res://assets/sprites/golem/SHIELD/SHIELD (7).png" id="39_pvurp"]
+[ext_resource type="Texture2D" uid="uid://uiensdi2c7ou" path="res://assets/sprites/golem/SHIELD/SHIELD (8).png" id="40_tfgry"]
+[ext_resource type="Texture2D" uid="uid://cnt615dgji855" path="res://assets/sprites/golem/SHIELD/SHIELD (9).png" id="41_f3jl4"]
+[ext_resource type="Texture2D" uid="uid://c5t2b7b2pcc18" path="res://assets/sprites/golem/SHIELD/SHIELD (10).png" id="42_k55va"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3jh0n"]
+radius = 37.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0k2j7"]
+height = 46.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ys4wd"]
+radius = 26.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qbd5n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_3w03j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_mu3yv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_qgg55")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_72px7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_x6cxd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_t0lkk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ouhac")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_3magh")
+}],
+"loop": true,
+"name": &"GLOW",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_qnlbq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_vxx2e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_x8gj5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_6toep")
+}],
+"loop": true,
+"name": &"IDLE",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("18_3jurq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_8gi8y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_7ikp2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_ltfu3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_v75pw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_hkhcn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_3l6lf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_yl275")
+}],
+"loop": false,
+"name": &"IMMUNE",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_c5m8p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_20hxr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_16k24")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_girfw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_tn2vx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_qlarp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_el3tw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_el3tw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_el3tw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_qlarp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_tn2vx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_girfw")
+}],
+"loop": true,
+"name": &"MELEE",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("33_38jxw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_r636p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_dgy4u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_y2302")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_4wc6p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_0mftk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_pvurp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_tfgry")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_f3jl4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_k55va")
+}],
+"loop": false,
+"name": &"SHIELD",
+"speed": 8.0
+}]
+
+[node name="Golem" type="CharacterBody2D" node_paths=PackedStringArray("healthbar")]
+script = ExtResource("1_nu5x0")
+max_speed = 35
+acceleration = 30
+dmg_rate = 20
+healthbar = NodePath("Healthbar")
+
+[node name="MeleeRange" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MeleeRange"]
+shape = SubResource("CircleShape2D_3jh0n")
+debug_color = Color(1, 0.0117647, 0.027451, 0.419608)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_0k2j7")
+debug_color = Color(0.921569, 0.670588, 0.313726, 0.501961)
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CircleShape2D_ys4wd")
+
+[node name="Timers" type="Node2D" parent="."]
+
+[node name="SwingTimer" type="Timer" parent="Timers"]
+one_shot = true
+
+[node name="FiniteStateMachine" type="Node" parent="." node_paths=PackedStringArray("state")]
+script = ExtResource("13_kbodl")
+state = NodePath("EnemyWanderState")
+
+[node name="EnemyChaseState" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("actor", "animator", "l_o_s")]
+script = ExtResource("14_f7mcm")
+actor = NodePath("../..")
+animator = NodePath("../../AnimatedSprite2D")
+l_o_s = NodePath("../../RayCast2D")
+
+[node name="EnemyWanderState" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("actor", "animator", "l_o_s")]
+script = ExtResource("16_622sm")
+actor = NodePath("../..")
+animator = NodePath("../../AnimatedSprite2D")
+l_o_s = NodePath("../../RayCast2D")
+
+[node name="EnemyMeleeState" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("actor", "animator", "l_o_s", "range")]
+script = ExtResource("24_fh47i")
+actor = NodePath("../..")
+animator = NodePath("../../AnimatedSprite2D")
+l_o_s = NodePath("../../RayCast2D")
+range = NodePath("../../MeleeRange")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(0, -17)
+collision_mask = 5
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_qbd5n")
+animation = &"MELEE"
+
+[node name="Healthbar" type="TextureProgressBar" parent="."]
+offset_left = -48.0
+offset_top = -39.0
+offset_right = 48.0
+offset_bottom = 1.0
+max_value = 150.0
+texture_under = ExtResource("25_2s8gf")
+texture_progress = ExtResource("26_fsafs")
+
+[connection signal="body_entered" from="MeleeRange" to="." method="_on_melee_range_body_entered"]
+[connection signal="body_entered" from="MeleeRange" to="FiniteStateMachine/EnemyChaseState" method="_on_melee_range_body_entered"]
+[connection signal="body_entered" from="MeleeRange" to="FiniteStateMachine/EnemyMeleeState" method="_on_melee_range_body_entered"]
+[connection signal="body_exited" from="MeleeRange" to="." method="_on_melee_range_body_exited"]
+[connection signal="body_exited" from="MeleeRange" to="FiniteStateMachine/EnemyMeleeState" method="_on_melee_range_body_exited"]
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="area_exited" from="Hurtbox" to="." method="_on_hurtbox_area_exited"]
+[connection signal="timeout" from="Timers/SwingTimer" to="." method="_on_swing_timer_timeout"]
