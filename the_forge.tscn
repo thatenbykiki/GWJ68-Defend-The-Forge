@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://dspcvtdqsvkw1"]
+
+[ext_resource type="Texture2D" uid="uid://co0b0atfth6t4" path="res://assets/icons/the_great_forge-BIG_ICON.png" id="1_e8uw5"]
+[ext_resource type="Script" path="res://the_forge.gd" id="1_ouyqq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fb0y4"]
+size = Vector2(160, 140)
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_ouyqq")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("RectangleShape2D_fb0y4")
+
+[node name="TheGreatForge-bigIcon" type="Sprite2D" parent="."]
+texture = ExtResource("1_e8uw5")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
+build_mode = 1
+polygon = PackedVector2Array(-60, 70, -60, 30, -70, 30, -70, 20, -80, 20, -80, -40, -70, -40, -70, -50, -50, -50, -50, -60, 40, -60, 40, -50, 50, -50, 50, -40, 70, -40, 70, -30, 80, -30, 80, 20, 70, 20, 70, 30, 60, 30, 60, 40, 50, 40, 50, 70)
+
+[node name="HealthBar" type="TextureProgressBar" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="area_exited" from="Hurtbox" to="." method="_on_hurtbox_area_exited"]

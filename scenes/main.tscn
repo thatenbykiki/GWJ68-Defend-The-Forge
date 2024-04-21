@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dru03h78nk0v5" path="res://scenes/mob_spawner.tscn" id="3_p0knj"]
 [ext_resource type="PackedScene" uid="uid://dox3bykvmy3xv" path="res://scenes/ui/HUD.tscn" id="5_2wbjj"]
 [ext_resource type="PackedScene" uid="uid://wfnjqg6kj4q7" path="res://scenes/ui/game_over.tscn" id="6_g3oao"]
-[ext_resource type="AudioStream" uid="uid://c6b3jwbscp21k" path="res://assets/bgm/DavidKBD - Reckless Punk-Metal Pack - 04 - Get Ready.ogg" id="6_ia4l7"]
+[ext_resource type="AudioStream" uid="uid://b4rcv1bb4iw8u" path="res://assets/bgm/Up-from-the-Ashes.ogg" id="8_4y66i"]
 [ext_resource type="PackedScene" uid="uid://ydn0xlqygnx6" path="res://scenes/ui/upgrade_options.tscn" id="8_m4bh5"]
 [ext_resource type="PackedScene" uid="uid://d0nxl2lveo2re" path="res://scenes/ui/relic_select.tscn" id="9_l14st"]
 [ext_resource type="AudioStream" uid="uid://bqvc8biks76gq" path="res://assets/sfx/013_Confirm_03.wav" id="10_ieeyp"]
@@ -14,7 +14,9 @@
 [ext_resource type="PackedScene" uid="uid://buqtcxhb1q7nh" path="res://scenes/ui/pause_screen.tscn" id="11_fnddk"]
 [ext_resource type="Script" path="res://scenes/ui/pause_screen.gd" id="12_kwc28"]
 [ext_resource type="PackedScene" uid="uid://b5ggnbdtj3hdg" path="res://scenes/ui/controls.tscn" id="13_xmllp"]
-[ext_resource type="PackedScene" uid="uid://b2skcmaxe0d07" path="res://forge_wall.tscn" id="15_b5an2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fcons"]
+size = Vector2(96, 6)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_dgmo2")
@@ -22,7 +24,20 @@ script = ExtResource("1_dgmo2")
 [node name="World" parent="." instance=ExtResource("1_x1tin")]
 position = Vector2(480, 270)
 
+[node name="BossCutscene" type="Area2D" parent="."]
+position = Vector2(480, 278)
+collision_layer = 128
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BossCutscene"]
+position = Vector2(0, -315)
+shape = SubResource("RectangleShape2D_fcons")
+
+[node name="SpawnTimer" type="Timer" parent="BossCutscene"]
+one_shot = true
+
 [node name="MobSpawner" parent="." instance=ExtResource("3_p0knj")]
+is_on = true
 
 [node name="Player" parent="." instance=ExtResource("2_t0hxg")]
 position = Vector2(480, 270)
@@ -48,7 +63,7 @@ visible = false
 
 [node name="BGM" type="AudioStreamPlayer" parent="."]
 process_mode = 3
-stream = ExtResource("6_ia4l7")
+stream = ExtResource("8_4y66i")
 volume_db = -16.086
 
 [node name="UpgradeOptions" parent="." instance=ExtResource("8_m4bh5")]
@@ -64,6 +79,7 @@ stream = ExtResource("10_ieeyp")
 
 [node name="SFX_Denied" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_bc67q")
+volume_db = 2.0
 
 [node name="PauseScreen" parent="." instance=ExtResource("11_fnddk")]
 process_mode = 2
@@ -74,9 +90,8 @@ script = ExtResource("12_kwc28")
 process_mode = 2
 visible = false
 
-[node name="BreakableWall" parent="." instance=ExtResource("15_b5an2")]
-position = Vector2(480, 152)
-
+[connection signal="area_entered" from="BossCutscene" to="." method="_on_boss_cutscene_area_entered"]
+[connection signal="timeout" from="BossCutscene/SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="hit_p" from="MobSpawner" to="." method="_on_mob_spawner_hit_p"]
 [connection signal="hit_p" from="MobSpawner" to="Player" method="_on_mob_spawner_hit_p"]
 [connection signal="timeout" from="WaveOverTimer" to="." method="_on_wave_over_timer_timeout"]

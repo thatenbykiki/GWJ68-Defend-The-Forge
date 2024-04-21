@@ -1,9 +1,10 @@
-[gd_scene load_steps=31 format=3 uid="uid://dxur04mk6q8vc"]
+[gd_scene load_steps=32 format=3 uid="uid://dxur04mk6q8vc"]
 
 [ext_resource type="Script" path="res://scenes/interactable/mob.gd" id="1_qwkl6"]
 [ext_resource type="Texture2D" uid="uid://dv4msiapbrp1c" path="res://assets/sprites/mobs/red/IDLE/South/Sprite Sheet1.png" id="1_v1e0h"]
 [ext_resource type="Texture2D" uid="uid://b65spejydgn5i" path="res://assets/sprites/mobs/red/HIT/East/Sprite Sheet1.png" id="2_1lbgi"]
 [ext_resource type="Texture2D" uid="uid://c7rmj1cfnnmsb" path="res://assets/sprites/mobs/red/IDLE/South/Sprite Sheet2.png" id="2_1p862"]
+[ext_resource type="Texture2D" uid="uid://digomjgvx6sby" path="res://assets/sprites/Shadow.png" id="2_6x5hi"]
 [ext_resource type="Texture2D" uid="uid://dqn6kxy3flehf" path="res://assets/sprites/mobs/red/HIT/East/Sprite Sheet2.png" id="3_1u8iy"]
 [ext_resource type="Texture2D" uid="uid://l6580r3l15dp" path="res://assets/sprites/mobs/red/IDLE/South/Sprite Sheet3.png" id="3_wpk4a"]
 [ext_resource type="Texture2D" uid="uid://c8sp2l6xny5we" path="res://assets/sprites/mobs/red/HIT/East/Sprite Sheet3.png" id="4_5u8sj"]
@@ -137,6 +138,10 @@ radius = 4.12311
 collision_layer = 4
 collision_mask = 5
 script = ExtResource("1_qwkl6")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+position = Vector2(0, 8)
+texture = ExtResource("2_6x5hi")
 
 [node name="Hurtbox" type="Area2D" parent="."]
 collision_layer = 4

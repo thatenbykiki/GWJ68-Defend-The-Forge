@@ -5,8 +5,8 @@ signal swing_sword
 @export var is_controller : bool
 
 @onready var main = get_node("/root/Main")
-@onready var ability = get_node("/root/Main/HUD/Ability")
-
+#@onready var ability = get_node("/root/Main/HUD/Ability")
+@onready var boss = get_node("/root/Main/ForgeGolem")
 
 @onready var sprite = $AnimatedSprite2D
 @onready var weapPivot = $WeaponPivot
@@ -42,10 +42,14 @@ var cur_health : int
 
 
 func _ready():
+	#boss.melee.connect(on_boss_melee)
+	#spawn_point = Vector2(480, -90) #Playground spawnpoint
 	spawn_point = Vector2(480, 270)
 	reset()
-	ability.show()
+	$Ability.show()
 
+func on_boss_melee():
+	print("HIT BY BOSS")
 
 func _physics_process(_delta):
 	get_input()
@@ -63,7 +67,7 @@ func reset():
 	can_relic = true
 	cdTimer.stop()
 	abilityTimer.stop()
-	ability.text = "RELIC CHARGED!"
+	$Ability.text = "RELIC CHARGED!"
 	position = spawn_point
 	sprite.play("idle1")
 
@@ -94,7 +98,7 @@ func get_input():
 		weapPivot.rotation = lerpf(rotation, mouse_pos.angle(), 1)
 	velocity = move_dir.clamp(Vector2(-1, -1), Vector2(1, 1)).normalized() * speed
 	
-	if Input.is_action_just_pressed("attack"):
+	if Input.is_action_pressed("attack"):
 		if can_attack:
 			swing_sword.emit()
 			attack()
@@ -117,17 +121,17 @@ func get_input():
 func relic_ability(relic):
 	match relic:
 		0:
-			ability.text = "INVULNERABLE!"
+			$Ability.text = "INVULNERABLE!"
 			health = 1000
 		1:
-			ability.text = "TRIPLE DAMAGE!"
+			$Ability.text = "TRIPLE DAMAGE!"
 			cur_atk = dmg_rate
 			dmg_rate *= 3.0
 		2:
-			ability.text = "FAST AS F*!"
+			$Ability.text = "FAST AS F*!"
 			cur_speed = speed
 			speed *= 2
-	ability.show()
+	$Ability.show()
 	$HaloAnim.show()
 	$HaloAnim.play()
 	abilityTimer.start(5)
@@ -144,6 +148,7 @@ func damage_upgrade():
 
 
 func heal_item():
+	$SFX/HealItem.play()
 	print("before heal: " + str(health))
 	health += (max_health * 0.20)
 	if health > max_health:
@@ -200,7 +205,7 @@ func _on_ability_timer_timeout():
 			dmg_rate = cur_atk
 		2:
 			speed = cur_speed
-	ability.hide()
+	$Ability.hide()
 	$HaloAnim.hide()
 	$HaloAnim.stop()
 	relic_on_cd = true
@@ -210,5 +215,6 @@ func _on_ability_timer_timeout():
 func _on_cooldown_timer_timeout():
 	relic_on_cd = false
 	can_relic = true
-	ability.text = "RELIC CHARGED!"
-	ability.show()
+	$SFX/RelicReady.play()
+	$Ability.text = "RELIC CHARGED!"
+	$Ability.show()
