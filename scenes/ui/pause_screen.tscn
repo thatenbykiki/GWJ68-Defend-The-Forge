@@ -1,18 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://buqtcxhb1q7nh"]
+[gd_scene load_steps=8 format=3 uid="uid://buqtcxhb1q7nh"]
 
-[ext_resource type="StyleBox" uid="uid://c2acqgbbgdxop" path="res://scenes/game_over_stylebox.tres" id="1_7oeai"]
-[ext_resource type="FontFile" uid="uid://bxe3w4luhe7go" path="res://assets/ui/monogram-extended.ttf" id="2_yrosl"]
+[ext_resource type="StyleBox" uid="uid://bs55rw0dwbaxl" path="res://ui_panel.tres" id="1_hr5lh"]
+[ext_resource type="FontFile" uid="uid://dhsh6imahk6ls" path="res://assets/ui/ThaleahFat.ttf" id="2_i3anq"]
 [ext_resource type="LabelSettings" uid="uid://dgudwg7rjw1aj" path="res://scenes/game_over_fonty.tres" id="3_fgx62"]
-[ext_resource type="Texture2D" uid="uid://c88oawka4d451" path="res://assets/icons/Sword_Icon.png" id="4_3d0bw"]
-[ext_resource type="LabelSettings" uid="uid://c5y5na1u3i3et" path="res://scenes/ui_font.tres" id="5_i05ra"]
-[ext_resource type="Texture2D" uid="uid://dhks83u63fefl" path="res://assets/icons/Boots_Icon.png" id="6_lxw0s"]
-[ext_resource type="Texture2D" uid="uid://j512eisikxf4" path="res://assets/icons/Shield_Icon.png" id="7_1a047"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_tq4yo"]
-font = ExtResource("2_yrosl")
-font_size = 64
-outline_size = 4
-outline_color = Color(0, 0, 0, 1)
+[ext_resource type="LabelSettings" uid="uid://dfdqmri8gqw3i" path="res://Header.tres" id="3_tioug"]
+[ext_resource type="StyleBox" uid="uid://bgrdv6leu1ewn" path="res://button_normal.tres" id="4_re4id"]
+[ext_resource type="StyleBox" uid="uid://ckiip4g1o53pj" path="res://button_hover.tres" id="5_e1ly7"]
+[ext_resource type="StyleBox" uid="uid://ca16hxldwxd6b" path="res://button_press_focus.tres" id="6_6ypvk"]
 
 [node name="PauseScreen" type="CanvasLayer"]
 
@@ -28,60 +22,99 @@ offset_right = 360.0
 offset_bottom = 230.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = ExtResource("1_7oeai")
+theme_override_styles/panel = ExtResource("1_hr5lh")
 
-[node name="BGMToggle" type="CheckButton" parent="Panel"]
-process_mode = 3
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -54.0
-offset_top = -338.0
-offset_right = 54.0
-offset_bottom = -304.0
-grow_horizontal = 2
-grow_vertical = 0
-focus_neighbor_top = NodePath("../Resume")
-theme_override_fonts/font = ExtResource("2_yrosl")
-theme_override_font_sizes/font_size = 32
-button_pressed = true
-action_mode = 0
-text = "Music"
-
-[node name="Label" type="Label" parent="Panel"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -72.0
-offset_right = 72.0
-offset_bottom = 51.0
-grow_horizontal = 2
-text = "PAUSED"
-label_settings = SubResource("LabelSettings_tq4yo")
-
-[node name="Resume" type="Button" parent="Panel"]
+[node name="Buttons" type="VBoxContainer" parent="Panel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -70.0
-offset_top = -165.0
-offset_right = 70.0
-offset_bottom = -131.0
+offset_left = -96.0
+offset_top = -73.0
+offset_right = 96.0
+offset_bottom = 73.0
 grow_horizontal = 2
 grow_vertical = 2
-focus_neighbor_bottom = NodePath("../BGMToggle")
-theme_override_fonts/font = ExtResource("2_yrosl")
+theme_override_constants/separation = 16
+
+[node name="Resume" type="Button" parent="Panel/Buttons"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../BGMToggle")
+focus_neighbor_bottom = NodePath("../Controls")
+theme_override_fonts/font = ExtResource("2_i3anq")
 theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = ExtResource("4_re4id")
+theme_override_styles/hover = ExtResource("5_e1ly7")
+theme_override_styles/pressed = ExtResource("6_6ypvk")
+theme_override_styles/focus = ExtResource("6_6ypvk")
 text = "Resume Game"
 
+[node name="Controls" type="Button" parent="Panel/Buttons"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Resume")
+focus_neighbor_bottom = NodePath("../RelicInfo")
+theme_override_fonts/font = ExtResource("2_i3anq")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = ExtResource("4_re4id")
+theme_override_styles/hover = ExtResource("5_e1ly7")
+theme_override_styles/pressed = ExtResource("6_6ypvk")
+theme_override_styles/focus = ExtResource("6_6ypvk")
+text = " View Controls "
+
+[node name="RelicInfo" type="Button" parent="Panel/Buttons"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Controls")
+focus_neighbor_bottom = NodePath("../LoreInfo")
+theme_override_fonts/font = ExtResource("2_i3anq")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = ExtResource("4_re4id")
+theme_override_styles/hover = ExtResource("5_e1ly7")
+theme_override_styles/pressed = ExtResource("6_6ypvk")
+theme_override_styles/focus = ExtResource("6_6ypvk")
+text = "Relic Info"
+
+[node name="LoreInfo" type="Button" parent="Panel/Buttons"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../RelicInfo")
+focus_neighbor_bottom = NodePath("../BGMToggle")
+theme_override_fonts/font = ExtResource("2_i3anq")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = ExtResource("4_re4id")
+theme_override_styles/hover = ExtResource("5_e1ly7")
+theme_override_styles/pressed = ExtResource("6_6ypvk")
+theme_override_styles/focus = ExtResource("6_6ypvk")
+text = "Lore Info"
+
+[node name="BGMToggle" type="CheckButton" parent="Panel/Buttons"]
+process_mode = 3
+layout_mode = 2
+focus_neighbor_top = NodePath("../LoreInfo")
+focus_neighbor_bottom = NodePath("../Resume")
+theme_override_fonts/font = ExtResource("2_i3anq")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/hover = ExtResource("5_e1ly7")
+theme_override_styles/focus = ExtResource("6_6ypvk")
+button_pressed = true
+action_mode = 0
+text = " Music"
+
+[node name="Paused" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -96.0
+offset_top = 53.0
+offset_right = 96.0
+offset_bottom = 112.0
+grow_horizontal = 2
+text = "PAUSED"
+label_settings = ExtResource("3_tioug")
+
 [node name="RelicsLabel" type="Label" parent="Panel"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -96,59 +129,4 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "RELIC ABILITIES"
 label_settings = ExtResource("3_fgx62")
-horizontal_alignment = 1
-
-[node name="Relics" type="Control" parent="Panel"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -40.0
-offset_right = 20.0
-grow_horizontal = 2
-grow_vertical = 0
-
-[node name="SwordSprite" type="Sprite2D" parent="Panel/Relics"]
-position = Vector2(-200, -180)
-scale = Vector2(3, 3)
-texture = ExtResource("4_3d0bw")
-
-[node name="Label" type="Label" parent="Panel/Relics/SwordSprite"]
-offset_left = 12.3333
-offset_top = -7.66667
-offset_right = 132.333
-offset_bottom = 15.3333
-text = "TRIPLE ATTACK POWER"
-label_settings = ExtResource("5_i05ra")
-horizontal_alignment = 1
-
-[node name="BootsSprite" type="Sprite2D" parent="Panel/Relics"]
-position = Vector2(-200, -108)
-scale = Vector2(3, 3)
-texture = ExtResource("6_lxw0s")
-
-[node name="Label2" type="Label" parent="Panel/Relics/BootsSprite"]
-offset_left = 12.3333
-offset_top = -7.33333
-offset_right = 132.333
-offset_bottom = 15.6667
-text = "DOUBLE SPEED"
-label_settings = ExtResource("5_i05ra")
-horizontal_alignment = 1
-
-[node name="ShieldSprite" type="Sprite2D" parent="Panel/Relics"]
-position = Vector2(-200, -36)
-scale = Vector2(3, 3)
-texture = ExtResource("7_1a047")
-
-[node name="Label3" type="Label" parent="Panel/Relics/ShieldSprite"]
-offset_left = 12.3333
-offset_top = -8.33334
-offset_right = 132.333
-offset_bottom = 14.6667
-text = "INVULNERABILITY"
-label_settings = ExtResource("5_i05ra")
 horizontal_alignment = 1

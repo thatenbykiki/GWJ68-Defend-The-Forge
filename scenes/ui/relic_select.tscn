@@ -1,17 +1,15 @@
-[gd_scene load_steps=8 format=3 uid="uid://d0nxl2lveo2re"]
+[gd_scene load_steps=11 format=3 uid="uid://d0nxl2lveo2re"]
 
-[ext_resource type="StyleBox" uid="uid://c2acqgbbgdxop" path="res://scenes/game_over_stylebox.tres" id="1_otmdc"]
 [ext_resource type="Script" path="res://scenes/ui/relic_select.gd" id="1_un4sb"]
-[ext_resource type="FontFile" uid="uid://bxe3w4luhe7go" path="res://assets/ui/monogram-extended.ttf" id="2_3uvxg"]
+[ext_resource type="StyleBox" uid="uid://bs55rw0dwbaxl" path="res://ui_panel.tres" id="2_esp6t"]
 [ext_resource type="Texture2D" uid="uid://c88oawka4d451" path="res://assets/icons/Sword_Icon.png" id="3_hx8q5"]
+[ext_resource type="LabelSettings" uid="uid://dfdqmri8gqw3i" path="res://Header.tres" id="3_ro7l3"]
+[ext_resource type="FontFile" uid="uid://dhsh6imahk6ls" path="res://assets/ui/ThaleahFat.ttf" id="4_vt31g"]
 [ext_resource type="Texture2D" uid="uid://j512eisikxf4" path="res://assets/icons/Shield_Icon.png" id="5_eupvn"]
+[ext_resource type="StyleBox" uid="uid://bgrdv6leu1ewn" path="res://button_normal.tres" id="5_ov7ni"]
 [ext_resource type="Texture2D" uid="uid://dhks83u63fefl" path="res://assets/icons/Boots_Icon.png" id="5_yfswc"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_2umm5"]
-font = ExtResource("2_3uvxg")
-font_size = 64
-outline_size = 4
-outline_color = Color(0, 0, 0, 1)
+[ext_resource type="StyleBox" uid="uid://ckiip4g1o53pj" path="res://button_hover.tres" id="6_pq4jq"]
+[ext_resource type="StyleBox" uid="uid://ca16hxldwxd6b" path="res://button_press_focus.tres" id="7_ku6le"]
 
 [node name="RelicSelect" type="CanvasLayer"]
 script = ExtResource("1_un4sb")
@@ -29,7 +27,7 @@ offset_bottom = 190.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1, 0.799999)
-theme_override_styles/panel = ExtResource("1_otmdc")
+theme_override_styles/panel = ExtResource("2_esp6t")
 
 [node name="Label" type="Label" parent="."]
 anchors_preset = 8
@@ -44,7 +42,7 @@ offset_bottom = -113.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "CHOOSE A RELIC"
-label_settings = SubResource("LabelSettings_2umm5")
+label_settings = ExtResource("3_ro7l3")
 
 [node name="Zweihander" type="Button" parent="."]
 anchors_preset = 8
@@ -59,9 +57,12 @@ offset_bottom = 56.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_neighbor_right = NodePath("../Boots")
-theme_override_fonts/font = ExtResource("2_3uvxg")
+theme_override_fonts/font = ExtResource("4_vt31g")
 theme_override_font_sizes/font_size = 32
-theme_override_styles/focus = ExtResource("1_otmdc")
+theme_override_styles/normal = ExtResource("5_ov7ni")
+theme_override_styles/hover = ExtResource("6_pq4jq")
+theme_override_styles/pressed = ExtResource("7_ku6le")
+theme_override_styles/focus = ExtResource("7_ku6le")
 text = "ZWEIHANDER
 + 50% Attack
 - 25% Speed"
@@ -76,17 +77,20 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -76.0
-offset_top = -56.0
-offset_right = 76.0
-offset_bottom = 56.0
+offset_left = -90.0
+offset_top = -61.0
+offset_right = 84.0
+offset_bottom = 61.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_neighbor_left = NodePath("../Zweihander")
 focus_neighbor_right = NodePath("../Obelisk")
-theme_override_fonts/font = ExtResource("2_3uvxg")
+theme_override_fonts/font = ExtResource("4_vt31g")
 theme_override_font_sizes/font_size = 32
-theme_override_styles/focus = ExtResource("1_otmdc")
+theme_override_styles/normal = ExtResource("5_ov7ni")
+theme_override_styles/hover = ExtResource("6_pq4jq")
+theme_override_styles/pressed = ExtResource("7_ku6le")
+theme_override_styles/focus = ExtResource("7_ku6le")
 text = "LAVA BOOTS
 + 50% Speed
 - 25% Health"
@@ -108,9 +112,12 @@ offset_bottom = 56.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_neighbor_left = NodePath("../Boots")
-theme_override_fonts/font = ExtResource("2_3uvxg")
+theme_override_fonts/font = ExtResource("4_vt31g")
 theme_override_font_sizes/font_size = 32
-theme_override_styles/focus = ExtResource("1_otmdc")
+theme_override_styles/normal = ExtResource("5_ov7ni")
+theme_override_styles/hover = ExtResource("6_pq4jq")
+theme_override_styles/pressed = ExtResource("7_ku6le")
+theme_override_styles/focus = ExtResource("7_ku6le")
 text = "OBELISK
 + 100% Health
 - 25% Attack

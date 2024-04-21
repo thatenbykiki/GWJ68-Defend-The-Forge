@@ -42,13 +42,16 @@ func _ready():
 func _debug():
 	print("IN RANGE ? " + str(is_in_range))
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	#if entered:
 		#dir = (player.position - position)
 	dir = (player.position - position)
 	dir = dir.normalized()
 	velocity = dir * speed
 	move_and_slide()
+	
+	if health <= 0:
+		die()
 	
 	if velocity.x != 0:
 		sprite.flip_h = velocity.x < 0
@@ -58,7 +61,7 @@ func _check_hit():
 	if is_in_range:
 		take_damage(player.dmg_rate)
 		play_hit_animation()
-		print("HIT!")
+		print("PLAYER HIT MOB!")
 
 
 func get_stunned():
@@ -66,9 +69,6 @@ func get_stunned():
 
 
 func take_damage(dmg_amount):
-	if health <= 0:
-		die()
-	else:
 		$LootPivot.rotation_degrees = randf_range(-180.0, 180.0)
 		loot_spawn.rotation_degrees = $LootPivot.rotation
 		health -= dmg_amount

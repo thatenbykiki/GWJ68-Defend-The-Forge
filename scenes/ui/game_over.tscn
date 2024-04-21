@@ -1,45 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://wfnjqg6kj4q7"]
+[gd_scene load_steps=10 format=3 uid="uid://wfnjqg6kj4q7"]
 
-[ext_resource type="LabelSettings" uid="uid://dgudwg7rjw1aj" path="res://scenes/game_over_fonty.tres" id="1_6rhix"]
 [ext_resource type="Script" path="res://scenes/ui/game_over.gd" id="1_bowfv"]
 [ext_resource type="FontFile" uid="uid://bxe3w4luhe7go" path="res://assets/ui/monogram-extended.ttf" id="2_kvtcx"]
-[ext_resource type="StyleBox" uid="uid://c2acqgbbgdxop" path="res://scenes/game_over_stylebox.tres" id="3_exi4c"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6bvrk"]
-bg_color = Color(0.105882, 0.105882, 0.105882, 0.654902)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(0.556863, 0.145098, 0.113725, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mrlll"]
-bg_color = Color(0.164706, 0.164706, 0.164706, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.776471, 0.270588, 0.141176, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oqiy5"]
-bg_color = Color(0.309804, 0.309804, 0.309804, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.929412, 0.670588, 0.313726, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
+[ext_resource type="StyleBox" uid="uid://bs55rw0dwbaxl" path="res://ui_panel.tres" id="2_ux6cn"]
+[ext_resource type="LabelSettings" uid="uid://dfdqmri8gqw3i" path="res://Header.tres" id="3_paru5"]
+[ext_resource type="LabelSettings" uid="uid://ctr2qrcuuvts5" path="res://scenes/ui_Body.tres" id="5_dxx82"]
+[ext_resource type="FontFile" uid="uid://dhsh6imahk6ls" path="res://assets/ui/ThaleahFat.ttf" id="6_4c57h"]
+[ext_resource type="StyleBox" uid="uid://bgrdv6leu1ewn" path="res://button_normal.tres" id="7_tjntj"]
+[ext_resource type="StyleBox" uid="uid://ckiip4g1o53pj" path="res://button_hover.tres" id="8_qj36a"]
+[ext_resource type="StyleBox" uid="uid://ca16hxldwxd6b" path="res://button_press_focus.tres" id="9_iflpw"]
 
 [node name="GameOver" type="CanvasLayer"]
 script = ExtResource("1_bowfv")
@@ -56,7 +25,7 @@ offset_right = 200.0
 offset_bottom = 100.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_6bvrk")
+theme_override_styles/panel = ExtResource("2_ux6cn")
 
 [node name="GameOver" type="Label" parent="."]
 anchors_preset = 8
@@ -72,7 +41,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 120
 text = "GAME OVER"
-label_settings = ExtResource("1_6rhix")
+label_settings = ExtResource("3_paru5")
 
 [node name="WavesLabel" type="Label" parent="."]
 anchors_preset = 8
@@ -89,6 +58,7 @@ grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_kvtcx")
 theme_override_font_sizes/font_size = 32
 text = "WAVES SURVIVED: 20"
+label_settings = ExtResource("5_dxx82")
 
 [node name="Button" type="Button" parent="."]
 anchors_preset = 8
@@ -102,9 +72,10 @@ offset_right = 46.0
 offset_bottom = 65.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("2_kvtcx")
+theme_override_fonts/font = ExtResource("6_4c57h")
 theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = ExtResource("3_exi4c")
-theme_override_styles/hover = SubResource("StyleBoxFlat_mrlll")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_oqiy5")
+theme_override_styles/normal = ExtResource("7_tjntj")
+theme_override_styles/hover = ExtResource("8_qj36a")
+theme_override_styles/pressed = ExtResource("9_iflpw")
+theme_override_styles/focus = ExtResource("9_iflpw")
 text = " TRY AGAIN "

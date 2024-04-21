@@ -1,9 +1,10 @@
-[gd_scene load_steps=160 format=3 uid="uid://cul7x7y4dgjvk"]
+[gd_scene load_steps=164 format=3 uid="uid://cul7x7y4dgjvk"]
 
 [ext_resource type="Texture2D" uid="uid://tf882xal635c" path="res://assets/sprites/player/RUN/South/Sprite Sheet1.png" id="1_b840g"]
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_xgk0h"]
 [ext_resource type="Texture2D" uid="uid://bt7hnpsstps72" path="res://assets/sprites/player/RUN/South/Sprite Sheet2.png" id="2_14r61"]
 [ext_resource type="Texture2D" uid="uid://djb4bfg08a6qt" path="res://assets/icons/HaloAnim/Sprite Sheet1.png" id="2_861ea"]
+[ext_resource type="Texture2D" uid="uid://digomjgvx6sby" path="res://assets/sprites/Shadow.png" id="2_hchd4"]
 [ext_resource type="Texture2D" uid="uid://dnwrgwxp2bu6d" path="res://assets/sprites/player/RUN/East/Sprite Sheet9.png" id="2_ion6k"]
 [ext_resource type="Texture2D" uid="uid://p81qefco63hx" path="res://assets/sprites/player/ATTACK/East/Sprite Sheet9.png" id="2_p4p0v"]
 [ext_resource type="Texture2D" uid="uid://6mhmmxhu6nay" path="res://assets/sprites/player/RUN/South/Sprite Sheet3.png" id="3_1uj3o"]
@@ -149,7 +150,9 @@
 [ext_resource type="AudioStream" uid="uid://dneq5st68jsp1" path="res://assets/sfx/07_human_atk_sword_1.wav" id="107_5ugss"]
 [ext_resource type="AudioStream" uid="uid://bsnb2otm48bgb" path="res://assets/sfx/07_human_atk_sword_2.wav" id="108_e53uo"]
 [ext_resource type="AudioStream" uid="uid://doshlrp231pod" path="res://assets/sfx/07_human_atk_sword_3.wav" id="109_4sis6"]
-[ext_resource type="FontFile" uid="uid://bxe3w4luhe7go" path="res://assets/ui/monogram-extended.ttf" id="150_m781u"]
+[ext_resource type="AudioStream" uid="uid://c7b6fittdynwh" path="res://assets/sfx/051_use_item_01.wav" id="148_os16c"]
+[ext_resource type="AudioStream" uid="uid://b6mdk2edm3006" path="res://assets/sfx/Pickup_coin 8.wav" id="151_3iju7"]
+[ext_resource type="FontFile" uid="uid://dhsh6imahk6ls" path="res://assets/ui/ThaleahFat.ttf" id="151_xdtfk"]
 [ext_resource type="Texture2D" uid="uid://qqvgrs4ii2aj" path="res://assets/ui/Healthbar (3).png" id="152_1l7vg"]
 [ext_resource type="Texture2D" uid="uid://dbtj6c0icavkk" path="res://assets/ui/Healthbar (1).png" id="152_gy40c"]
 
@@ -713,16 +716,24 @@ height = 28.5715
 radius = 6.0
 height = 16.0
 
-[sub_resource type="LabelSettings" id="LabelSettings_fcsx7"]
-resource_local_to_scene = true
-font = ExtResource("150_m781u")
-outline_size = 4
-outline_color = Color(0, 0, 0, 1)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ekjr1"]
+size = Vector2(11.3137, 11.3137)
 
-[node name="Player" type="CharacterBody2D"]
+[sub_resource type="LabelSettings" id="LabelSettings_e273u"]
+font = ExtResource("151_xdtfk")
+font_color = Color(0.878431, 0.454902, 0.219608, 1)
+outline_size = 8
+outline_color = Color(0.152941, 0.152941, 0.152941, 1)
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 2
 collision_mask = 37
 script = ExtResource("1_xgk0h")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+self_modulate = Color(0.380392, 0.235294, 0.439216, 1)
+position = Vector2(0, 6)
+texture = ExtResource("2_hchd4")
 
 [node name="HaloAnim" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 6)
@@ -759,23 +770,30 @@ position = Vector2(13, 0)
 collision_layer = 2
 collision_mask = 32
 
-[node name="Hurtbox" type="CollisionShape2D" parent="Area2D"]
+[node name="Hurtbox" type="CollisionShape2D" parent="Area2D" groups=["player"]]
 visible = false
 position = Vector2(0, -1)
 scale = Vector2(0.559999, 0.559999)
 shape = SubResource("CapsuleShape2D_vr8jc")
 debug_color = Color(0, 0.647059, 0.247059, 0.419608)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["player"]]
 position = Vector2(0, -1)
 shape = SubResource("CapsuleShape2D_w3ubh")
 debug_color = Color(0.904724, 0.305332, 0, 0.42)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+rotation = -0.785397
+shape = SubResource("RectangleShape2D_ekjr1")
 
 [node name="SFX" type="Node2D" parent="."]
 
 [node name="PlayerHit" type="AudioStreamPlayer2D" parent="SFX"]
 stream = ExtResource("106_3tui5")
+
+[node name="HealItem" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("148_os16c")
 
 [node name="Slash" type="AudioStreamPlayer2D" parent="SFX"]
 stream = ExtResource("107_5ugss")
@@ -785,6 +803,9 @@ stream = ExtResource("108_e53uo")
 
 [node name="Slash3" type="AudioStreamPlayer2D" parent="SFX"]
 stream = ExtResource("109_4sis6")
+
+[node name="RelicReady" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("151_3iju7")
 
 [node name="Timers" type="Node2D" parent="."]
 
@@ -800,23 +821,24 @@ one_shot = true
 one_shot = true
 
 [node name="Ability" type="Label" parent="."]
-visible = false
+z_index = 3
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -21.0
-offset_top = 9.0
-offset_right = 63.0
-offset_bottom = 32.0
+offset_left = -23.0
+offset_top = -23.0
+offset_right = 70.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.5, 0.5)
 text = "ABILITY READY!"
-label_settings = SubResource("LabelSettings_fcsx7")
+label_settings = SubResource("LabelSettings_e273u")
+horizontal_alignment = 1
 
 [node name="HealthBar" type="TextureProgressBar" parent="."]
+z_index = 3
 offset_left = -12.0
 offset_top = -19.0
 offset_right = 28.0

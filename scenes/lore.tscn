@@ -1,0 +1,79 @@
+[gd_scene load_steps=8 format=3 uid="uid://b8tdc5dgnjx3q"]
+
+[ext_resource type="StyleBox" uid="uid://bs55rw0dwbaxl" path="res://ui_panel.tres" id="1_f2v2d"]
+[ext_resource type="LabelSettings" uid="uid://dfdqmri8gqw3i" path="res://Header.tres" id="2_bkumq"]
+[ext_resource type="LabelSettings" uid="uid://ctr2qrcuuvts5" path="res://scenes/ui_Body.tres" id="3_4ltdr"]
+[ext_resource type="FontFile" uid="uid://dhsh6imahk6ls" path="res://assets/ui/ThaleahFat.ttf" id="4_yctq6"]
+[ext_resource type="StyleBox" uid="uid://bgrdv6leu1ewn" path="res://button_normal.tres" id="5_4mxcn"]
+[ext_resource type="StyleBox" uid="uid://ckiip4g1o53pj" path="res://button_hover.tres" id="6_f3sfl"]
+[ext_resource type="StyleBox" uid="uid://ca16hxldwxd6b" path="res://button_press_focus.tres" id="7_iqra3"]
+
+[node name="Lore" type="CanvasLayer"]
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("1_f2v2d")
+
+[node name="Header" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -114.0
+offset_right = 114.0
+offset_bottom = 59.0
+grow_horizontal = 2
+text = "LORE"
+label_settings = ExtResource("2_bkumq")
+horizontal_alignment = 1
+
+[node name="GameInfo" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.0
+offset_top = -15.0
+offset_right = 90.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "YOU ARE NERO, THE OBSIDIAN KNIGHT.
+
+A 	DARKNESS IS ATTEMPTING TO OVERTAKE THE GREAT FORGE, 
+WHICH YOU ARE SWORN TO PROTECT.
+
+you must break through the gates
+and stop the evil force before you are
+overrun and overtaken.
+
+godspeed, you obsidian knight."
+label_settings = ExtResource("3_4ltdr")
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -36.0
+offset_top = -56.0
+offset_right = 36.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("4_yctq6")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = ExtResource("5_4mxcn")
+theme_override_styles/hover = ExtResource("6_f3sfl")
+theme_override_styles/pressed = ExtResource("7_iqra3")
+theme_override_styles/focus = ExtResource("7_iqra3")
+text = " RETURN "

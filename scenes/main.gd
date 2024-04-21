@@ -23,11 +23,20 @@ var sword_icon = preload("res://assets/icons/Sword_Icon.png")
 var shield_icon = preload("res://assets/icons/Shield_Icon.png")
 var boots_icon = preload("res://assets/icons/Boots_Icon.png")
 
+var wall_scene = preload("res://scenes/world/area_wall.tscn")
+var boss_scene = preload("res://forge_golem.tscn")
+
+var gate_scene = preload("res://forge_wall.tscn")
+
 var music_on : bool
+var music_check : bool
+var gate_dead : bool
 
 var mob_dmg_rate := 20.0
 var max_mobs : int
 var mobs_killed := 0
+
+var player_lowhealth : bool
 var coins : int
 var wave : int
 var chosen_relic : int # 0: Obelisk, 1: Zweihander, 2: Lava Boots
@@ -36,24 +45,45 @@ var chosen_upgrade : int # 0: Damage, 1: Speed, 3: INVALID
 
 func _ready():
 	$GameOver/Button.pressed.connect(new_game)
+	
 	$UpgradeOptions/Panel/DamageUp.pressed.connect(damage_upgrade)
 	$UpgradeOptions/Panel/SpeedUp.pressed.connect(speed_upgrade)
 	$UpgradeOptions/Panel/NextWave.pressed.connect(next_wave_start)
+	
 	$RelicSelect/Boots.pressed.connect(boots_relic)
 	$RelicSelect/Zweihander.pressed.connect(sword_relic)
 	$RelicSelect/Obelisk.pressed.connect(shield_relic)
-	$PauseScreen/Panel/BGMToggle.toggled.connect(toggle_bgm)
-	$PauseScreen/Panel/Resume.pressed.connect(resume_game)
+	
+	$PauseScreen/Panel/Buttons/BGMToggle.toggled.connect(toggle_bgm)
+	$PauseScreen/Panel/Buttons/Resume.pressed.connect(resume_game)
+	$PauseScreen/Panel/Buttons/Controls.pressed.connect(show_controls_info)
+	$PauseScreen/Panel/Buttons/RelicInfo.pressed.connect(show_relics_info)
+	$PauseScreen/Panel/Buttons/LoreInfo.pressed.connect(show_lore_info)
+	
+	$ControlsInfo/Panel/Button.pressed.connect(show_pause_menu)
+	$RelicsInfo/Panel/Button.pressed.connect(show_pause_menu)
+	$LoreInfo/Panel/Button.pressed.connect(show_pause_menu)
+	
 	$Controls/Panel/Button.pressed.connect(game_start)
 	
-	$BGM.playing = true
+	$StartMenu/Panel/Buttons/ViewTut.pressed.connect(show_lore)
+	$LorePanel/Panel/Button.pressed.connect(show_controls)
+	$StartMenu/Panel/Buttons/SkipTut.pressed.connect(game_start)
+	
+	#$TheWall.wall_destroyed.connect(stop_waves)
+	$BGM.stream = preload("res://assets/bgm/Up-from-the-Ashes.ogg")
 	music_on = true
+	$HUD.hide()
 	player.reset()	
 	show_start_menu()
 
 func _process(_delta):
 	update_ui()
 	loop_bgm()
+	
+	if player_lowhealth && !$SFX_Denied.playing:
+		$SFX_Denied.play()
+	
 	if is_wave_completed():
 		get_tree().paused = true
 		wave += 1
@@ -66,7 +96,7 @@ func _process(_delta):
 	if Input.is_action_just_pressed("pause"):
 		get_tree().paused = true
 		$PauseScreen.show()
-		$PauseScreen/Panel/Resume.grab_focus()
+		$PauseScreen/Panel/Buttons/Resume.grab_focus()
 
 
 func get_menus():
@@ -75,12 +105,61 @@ func get_menus():
 
 func show_start_menu():
 	get_tree().paused = true
+	$StartMenu.show()
+	$StartMenu/Panel/Buttons/ViewTut.grab_focus()
+
+
+func show_controls():
+	$StartMenu.hide()
+	$LorePanel.hide()
+	$Controls/Panel/Button.text = " START GAME "
 	$Controls.show()
 	$Controls/Panel/Button.grab_focus()
 
 
+func show_lore_info():
+	$StartMenu.hide()
+	$LoreInfo.show()
+	$LoreInfo/Panel/Button.grab_focus()
+
+
+func show_lore():
+	$StartMenu.hide()
+	$LorePanel.show()
+	$LorePanel/Panel/Button.grab_focus()
+
+
+func show_relics_info():
+	$PauseScreen.hide()
+	$RelicsInfo.show()
+	$RelicsInfo/Panel/Button.grab_focus()
+
+
+func show_controls_info():
+	$PauseScreen.hide()
+	$ControlsInfo.show()
+	$ControlsInfo/Panel/Button.grab_focus()
+
+
+func show_pause_menu():
+	$ControlsInfo.hide()
+	$RelicsInfo.hide()
+	$LoreInfo.hide()
+	$PauseScreen.show()
+	$PauseScreen/Panel/Buttons/Resume.grab_focus()
+
+
 func game_start():
+	#if music_check:
+		#music_on = true
+		#$BGM.playing = true
+	#else:
+		#music_on = false
+		#$BGM.playing = false
+	$StartMenu.hide()
 	$Controls.hide()
+	$LorePanel.hide()
+	$HUD.show()
 	new_game()
 	relic_select()
 
@@ -107,41 +186,59 @@ func resume_game():
 
 func new_game():
 	get_tree().paused = false
+	$BGM.stream = preload("res://assets/bgm/Up-from-the-Ashes.ogg")
+	$BGM.playing = true
 	chosen_relic = 3
 	relic_selected = false
 	coins = 0
 	wave = 1
 	max_mobs = 3
 	mobs_killed = 0
+	spawn_gate()
 	player.reset()
 	reset()
 
 
 func reset():
+	$MobSpawner/Timer.set_autostart(true)
+	$MobSpawner/Timer.start()
 	mobMgr.mobs_spawned = 0
 	chosen_upgrade = 3
 	$UpgradeOptions.hide()
 	$GameOver.hide()
+	$HUD.show()
 	get_tree().paused = false
 	if !relic_selected:
 		relic_select()
 
+func spawn_gate():
+	var gate = gate_scene.instantiate()
+	gate.position = Vector2(480, 152)
+	add_child(gate)
 
 func next_wave_start():
 	if chosen_upgrade == 3:
 		$SFX_Denied.play()
 	elif chosen_upgrade == 0:
-		player.dmg_rate *= 1.15
+		player.dmg_rate += (player.BASE_DAMAGE * .2)
 		$UpgradeOptions.hide()
 		$WaveOverTimer.start()
 	else:
-		player.speed *= 1.15
+		player.speed += (player.BASE_SPEED * .2)
 		$UpgradeOptions.hide()
 		$WaveOverTimer.start()
 	print("dmg: " + str(player.dmg_rate))
 	print("spd: " + str(player.speed))
 
 
+func stop_waves():
+	$MobSpawner/Timer.set_autostart(false)
+	$MobSpawner/Timer.stop()
+
+
+func start_waves():
+	$MobSpawner/Timer.set_autostart(true)
+	$MobSpawner/Timer.start()
 
 func relic_select():
 	get_tree().paused = true
@@ -205,8 +302,32 @@ func is_wave_completed():
 		return false
 
 
+func on_game_win():
+	# connected :)
+	# pause game
+	# show game_win screen
+	print("YOU WIN!")
+
+
+func _boss_cutscene():
+	#print("cutscene triggered")
+	#set_process_input(false)
+	#var boss = boss_scene.instantiate()
+	#boss.position = Vector2(480, -170)
+	#player.direction.move_toward(480, -90)
+	## move player up to boss range
+	## "lock" the doors
+	## begin the battle
+	#set_process_input(true)
+	#add_child(boss)
+	#$BossCutscene/CollisionShape2D.process_mode = Node.PROCESS_MODE_DISABLED
+	#print("THE BOSS AWAITS")
+	pass
+
 func game_over():
 	#SFX_GAMEOVER
+	$HUD.hide()
+	$BGM.playing = false
 	get_tree().call_group("mobs", "queue_free")
 	get_tree().call_group("items", "queue_free")
 	$GameOver/WavesLabel.text = "WAVES SURVIVED: " + str(wave - 1)
@@ -306,8 +427,16 @@ func _change_heart_frames():
 
 func update_health():
 	playerHealthbar.value = player.health
+	
 	if player.health <= 0:
 		game_over()
+	
+	if player.health <= 45:
+		player_lowhealth = true
+		playerHealthbar.texture_under = preload("res://assets/ui/healthbar_lowhealth.png")
+	else:
+		player_lowhealth = false
+		playerHealthbar.texture_under = preload("res://assets/ui/Healthbar (3).png")
 
 
 func _on_mob_spawner_hit_p():
@@ -325,3 +454,37 @@ func _on_wave_over_timer_timeout():
 
 func _on_game_reset_timer_timeout():
 	new_game()
+
+
+func _on_boss_cutscene_area_entered(area):
+	if area.is_in_group("player"):
+		get_tree().call_group("mobs", "queue_free")
+		print("cutscene triggered")
+		music_check = music_on
+		if music_check:
+			music_on = false
+			$BGM.playing = false
+		set_process_input(false)
+		var wall = wall_scene.instantiate()
+		# move player up to boss range
+		player.position = Vector2(480, -90)
+		# "lock" the doors
+		wall.position = Vector2(480, -42)
+		add_child(wall)
+		wall.add_to_group("mobs")
+		# begin the battle
+		set_process_input(true)
+		$BossCutscene/SpawnTimer.start()
+
+
+func _on_spawn_timer_timeout():
+	$BGM.stream = preload("res://assets/bgm/Shadows-of-the-Abyss.ogg")
+	if music_check:
+			music_on = true
+			$BGM.playing = true
+	#$BGM.playing = true
+	var boss = boss_scene.instantiate()
+	boss.position = Vector2(480, -170)
+	add_child(boss)
+	boss.add_to_group("mobs")
+	boss.boss_died.connect(on_game_win)
